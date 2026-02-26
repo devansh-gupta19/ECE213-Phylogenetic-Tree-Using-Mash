@@ -1,4 +1,4 @@
-#include "readMapper.cuh"
+#include "masterHeader.cuh"
 /**
  * Prints information for each available GPU device on stdout
  */

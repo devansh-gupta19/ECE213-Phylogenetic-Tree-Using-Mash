@@ -5,6 +5,7 @@
 #include <thrust/binary_search.h>
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
+#include <thrust/unique.h>
 
 /**
  * Finds kmers for the compressed sequence creates an array with elements
@@ -59,16 +60,13 @@ __global__ void kmerArrCreate(
 
 
 /**
- * Constructs seed table, consisting of kmerOffset and kmerPos arrrays
+ * Constructs seed table, consisting and kmerPos arrrays
  * on the GPU.
 */
-void seedTableOnGpu (
+void GpuAligner::seedTableOnGpu (
     uint32_t* compressedSeq,
     uint32_t seqLen,
-
     uint32_t kmerSize,
-
-    uint32_t* kmerOffset,
     size_t* kmerArr) {
 
     // TODO: make sure to appropriately set the values below

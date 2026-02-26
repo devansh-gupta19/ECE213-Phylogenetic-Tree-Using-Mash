@@ -4,12 +4,12 @@
 #include <cstring>
 
 // Helper function to rotate bits left
-inline uint32_t rotl32(uint32_t x, int8_t r) {
+__device__ uint32_t rotl32(uint32_t x, int8_t r) {
     return (x << r) | (x >> (32 - r));
 }
 
 // Final mixing function (The Avalanche / fmix step)
-inline uint32_t fmix32(uint32_t h) {
+__device__ uint32_t fmix32(uint32_t h) {
     h ^= h >> 16;
     h *= 0x85ebca6b;
     h ^= h >> 13;
@@ -19,7 +19,7 @@ inline uint32_t fmix32(uint32_t h) {
 }
 
 // Main MurmurHash3 function (32-bit version)
-__global__ void MurmurHash3_x86_32(const void* key, int len, uint32_t seed, uin32_t *hOut) {
+__global__ void MurmurHash3_x86_32(const void* key, int len, uint32_t seed, uint32_t *hOut) {
     const uint8_t* data = (const uint8_t*)key;
     const int nblocks = len / 4;
 
@@ -68,5 +68,21 @@ __global__ void MurmurHash3_x86_32(const void* key, int len, uint32_t seed, uin3
 
     // Force all bits to avalanche
     *hOut = fmix32(h1);
+}
+
+void GpuAligner::MurmurHashCaller(const void* key, int len, uint32_t seed, uint32_t *hOut) {
+    int numBlocks = 1; // i.e. number of thread blocks on the GPU
+    int blockSize = 1; // i.e. number of GPU threads per thread block
+
+    std::string berr = cudaGetErrorString(cudaGetLastError());
+    if (berr != "no error") printf("ERROR: Before kernel %s!\n", berr.c_str());
+    
+    MurmurHash3_x86_32<<<numBlocks, blockSize>>>(key, len, seed, hOut);
+
+    std::string aerr = cudaGetErrorString(cudaGetLastError());
+    if (aerr != "no error") printf("ERROR: After kernel %s!\n", aerr.c_str());
+    // Wait for all computation on GPU device to finish. Needed to ensure
+    // correct runtime profiling results for this function.
+    cudaDeviceSynchronize();
 }
 
