@@ -54,10 +54,10 @@ int main(int argc, char** argv) {
     }
 
     // Check input values
-    if ((kmerSize < 2) || (kmerSize > 15)) {
-        std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
-        exit(1);
-    }
+    // if ((kmerSize < 2) || (kmerSize > 50)) {
+    //     std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
+    //     exit(1);
+    // }
     if ((kmerWindow < 1) || (kmerWindow > 32)) {
         std::cerr << "ERROR! kmerWindow should be between 1 and 64." << std::endl;
         exit(1);
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
     // Print GPU information
     timer.Start();
     fprintf(stdout, "Setting CPU threads to %u and printing GPU device properties.\n", numThreads);
-    tbb::global_control init(tbb::global_control::max_allowed_parallelism, numThreads);
+    // tbb::global_control init(tbb::global_control::max_allowed_parallelism, numThreads);
     printGpuProperties();
     fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
 
@@ -84,16 +84,41 @@ int main(int argc, char** argv) {
     }
 
 
+    GpuAligner Aligner;
+
     // Example usage: Hashing a 21-mer canonical string
     const char* seq = "AACGTCGATCGATCGATCGATCCGTACGTCGATCGATCGATCGATCCGATCGATCGAACGTCGATCGATCGAACGTCGATCGATCGATCGATCTCGATCTCACGTCGATCGATCGATCGATCGATC";
     uint32_t compressedSeq[(strlen(seq)+15)/16];
+
+    uint32_t compressedSeqLen = (strlen(seq) + 15) / 16;
+    uint32_t numKmers = strlen(seq) - kmerSize + 1;
+
+    fprintf(stdout, "KmerSize = %d\n", kmerSize);
+    fprintf(stdout, "compressedSeqLen = %d\n", compressedSeqLen);
+    fprintf(stdout, "numKmers = %d\n", numKmers);
+    size_t kmerArr[numKmers];
+
     twoBitCompress((char*)seq, strlen(seq), compressedSeq);
 
-    printf(stdout, "Compressed sequence: ");
-    for (uint32_t i = 0; i < (strlen(seq) + 15) / 16; i++) {
-        printf(stdout, "%08x ", compressedSeq[i]);
+    fprintf(stdout, "Compressed sequence: ");
+
+    for (uint32_t i = 0; i < compressedSeqLen; i++) {
+        fprintf(stdout, "%08x ", compressedSeq[i]);
     }
-    printf(stdout, "\n");
+    fprintf(stdout, "\n");
+
+    Aligner.seedTableOnGpu (
+        compressedSeq,
+        compressedSeqLen,
+        kmerSize,
+        kmerArr);
+
+    for (uint32_t i = 0; i < numKmers; i++) {
+        fprintf(stdout, "%08x ", kmerArr[i]);
+    }
+    fprintf(stdout, "\n");
+
+
     return 0;
 }
 
