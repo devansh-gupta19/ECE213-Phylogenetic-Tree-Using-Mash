@@ -201,6 +201,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/memTransfer.o: src/memTransfer.cu.o
+.PHONY : src/memTransfer.o
+
+# target to build an object file
+src/memTransfer.cu.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/memTransfer.cu.o
+.PHONY : src/memTransfer.cu.o
+
+src/memTransfer.i: src/memTransfer.cu.i
+.PHONY : src/memTransfer.i
+
+# target to preprocess a source file
+src/memTransfer.cu.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/memTransfer.cu.i
+.PHONY : src/memTransfer.cu.i
+
+src/memTransfer.s: src/memTransfer.cu.s
+.PHONY : src/memTransfer.s
+
+# target to generate assembly for a file
+src/memTransfer.cu.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/memTransfer.cu.s
+.PHONY : src/memTransfer.cu.s
+
 src/murmur3Hash.o: src/murmur3Hash.cu.o
 .PHONY : src/murmur3Hash.o
 
@@ -267,6 +291,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/memTransfer.o"
+	@echo "... src/memTransfer.i"
+	@echo "... src/memTransfer.s"
 	@echo "... src/murmur3Hash.o"
 	@echo "... src/murmur3Hash.i"
 	@echo "... src/murmur3Hash.s"

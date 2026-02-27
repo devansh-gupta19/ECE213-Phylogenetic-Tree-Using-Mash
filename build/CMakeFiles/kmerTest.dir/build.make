@@ -83,10 +83,24 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CUDA source to assembly CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.s"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
 
+CMakeFiles/kmerTest.dir/src/memTransfer.cu.o: CMakeFiles/kmerTest.dir/flags.make
+CMakeFiles/kmerTest.dir/src/memTransfer.cu.o: ../src/memTransfer.cu
+CMakeFiles/kmerTest.dir/src/memTransfer.cu.o: CMakeFiles/kmerTest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object CMakeFiles/kmerTest.dir/src/memTransfer.cu.o"
+	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/kmerTest.dir/src/memTransfer.cu.o -MF CMakeFiles/kmerTest.dir/src/memTransfer.cu.o.d -x cu -c /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/memTransfer.cu -o CMakeFiles/kmerTest.dir/src/memTransfer.cu.o
+
+CMakeFiles/kmerTest.dir/src/memTransfer.cu.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/kmerTest.dir/src/memTransfer.cu.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
+
+CMakeFiles/kmerTest.dir/src/memTransfer.cu.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CUDA source to assembly CMakeFiles/kmerTest.dir/src/memTransfer.cu.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
+
 CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o: CMakeFiles/kmerTest.dir/flags.make
 CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o: ../src/gpuProperty.cu
 CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o: CMakeFiles/kmerTest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CUDA object CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o"
 	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o -MF CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o.d -x cu -c /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/gpuProperty.cu -o CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o
 
 CMakeFiles/kmerTest.dir/src/gpuProperty.cu.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/kmerTest.dir/src/gpuProperty.cu.s: cmake_force
 CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: CMakeFiles/kmerTest.dir/flags.make
 CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp
 CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: CMakeFiles/kmerTest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o -MF CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o.d -o CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o -c /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/twoBitCompressor.cpp
 
 CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.s: cmake_force
 CMakeFiles/kmerTest.dir/src/kmer.cu.o: CMakeFiles/kmerTest.dir/flags.make
 CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu
 CMakeFiles/kmerTest.dir/src/kmer.cu.o: CMakeFiles/kmerTest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CUDA object CMakeFiles/kmerTest.dir/src/kmer.cu.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CUDA object CMakeFiles/kmerTest.dir/src/kmer.cu.o"
 	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/kmerTest.dir/src/kmer.cu.o -MF CMakeFiles/kmerTest.dir/src/kmer.cu.o.d -x cu -c /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/kmer.cu -o CMakeFiles/kmerTest.dir/src/kmer.cu.o
 
 CMakeFiles/kmerTest.dir/src/kmer.cu.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.s: cmake_force
 CMakeFiles/kmerTest.dir/src/main.cpp.o: CMakeFiles/kmerTest.dir/flags.make
 CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/kmerTest.dir/src/main.cpp.o: CMakeFiles/kmerTest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/kmerTest.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/kmerTest.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kmerTest.dir/src/main.cpp.o -MF CMakeFiles/kmerTest.dir/src/main.cpp.o.d -o CMakeFiles/kmerTest.dir/src/main.cpp.o -c /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/main.cpp
 
 CMakeFiles/kmerTest.dir/src/main.cpp.i: cmake_force
@@ -142,6 +156,7 @@ CMakeFiles/kmerTest.dir/src/main.cpp.s: cmake_force
 # Object files for target kmerTest
 kmerTest_OBJECTS = \
 "CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o" \
+"CMakeFiles/kmerTest.dir/src/memTransfer.cu.o" \
 "CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o" \
 "CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o" \
 "CMakeFiles/kmerTest.dir/src/kmer.cu.o" \
@@ -151,6 +166,7 @@ kmerTest_OBJECTS = \
 kmerTest_EXTERNAL_OBJECTS =
 
 kmerTest: CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o
+kmerTest: CMakeFiles/kmerTest.dir/src/memTransfer.cu.o
 kmerTest: CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o
 kmerTest: CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o
 kmerTest: CMakeFiles/kmerTest.dir/src/kmer.cu.o
@@ -160,7 +176,7 @@ kmerTest: /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.74.0
 kmerTest: /usr/lib/x86_64-linux-gnu/libz.so
 kmerTest: /usr/lib/x86_64-linux-gnu/libtbb.so.12.5
 kmerTest: CMakeFiles/kmerTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable kmerTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable kmerTest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kmerTest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

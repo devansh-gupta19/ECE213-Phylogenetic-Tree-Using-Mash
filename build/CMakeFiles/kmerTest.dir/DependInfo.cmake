@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/gpuProperty.cu" "CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o" "gcc" "CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o.d"
   "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/kmer.cu" "CMakeFiles/kmerTest.dir/src/kmer.cu.o" "gcc" "CMakeFiles/kmerTest.dir/src/kmer.cu.o.d"
+  "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/memTransfer.cu" "CMakeFiles/kmerTest.dir/src/memTransfer.cu.o" "gcc" "CMakeFiles/kmerTest.dir/src/memTransfer.cu.o.d"
   "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/murmur3Hash.cu" "CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o" "gcc" "CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o.d"
   "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/main.cpp" "CMakeFiles/kmerTest.dir/src/main.cpp.o" "gcc" "CMakeFiles/kmerTest.dir/src/main.cpp.o.d"
   "/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/src/twoBitCompressor.cpp" "CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o" "gcc" "CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o.d"

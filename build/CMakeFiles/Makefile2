@@ -81,12 +81,12 @@ clean: CMakeFiles/kmerTest.dir/clean
 CMakeFiles/kmerTest.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target kmerTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target kmerTest"
 .PHONY : CMakeFiles/kmerTest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/kmerTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/kmerTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/adkamat/project/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles 0
 .PHONY : CMakeFiles/kmerTest.dir/rule
