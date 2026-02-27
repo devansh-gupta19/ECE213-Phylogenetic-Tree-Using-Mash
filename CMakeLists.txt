@@ -43,6 +43,7 @@ endif()
 
 add_executable (kmerTest
     src/murmur3Hash.cu
+	src/memTransfer.cu
     src/gpuProperty.cu
     src/twoBitCompressor.cpp
     src/kmer.cu
