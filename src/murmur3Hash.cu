@@ -70,6 +70,7 @@ __global__ void MurmurHash3_x86_32(const void* key, int len, uint32_t seed, uint
     *hOut = fmix32(h1);
 }
 
+
 void GpuAligner::MurmurHashCaller(const void* key, int len, uint32_t seed, uint32_t *hOut) {
     int numBlocks = 1; // i.e. number of thread blocks on the GPU
     int blockSize = 1; // i.e. number of GPU threads per thread block

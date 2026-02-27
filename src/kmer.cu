@@ -18,30 +18,21 @@
  */
 __global__ void kmerArrCreate(
     uint32_t* d_compressedSeq,
-    uint32_t d_seqLen,
+    uint32_t numKmers, 
     uint32_t kmerSize,
     size_t* d_kmerArr) {
 
     int tx = threadIdx.x;
     int bx = blockIdx.x;
 
-    // HINT: Values below could be useful for parallelizing the code
-    //int bs = blockDim.x;
-    //int gs = gridDim.x;
-
-    uint32_t N = d_seqLen;
     uint32_t k = kmerSize;
-
-    // Helps mask the non kmer bits from compressed sequence. E.g. for k=2,
-    // mask=0x1111 and for k=3, mask=0x111111
-    uint32_t mask = (1 << 2*k)-1;
+    // Safely cast to 64-bit to prevent bitwise shift overflow
+    uint64_t mask = (1ULL << (2*k))-1; 
     size_t kmer = 0;
 
-    // HINT: the if statement below ensures only the first thread of the first
-    // block does all the computation. This statement might have to be removed
-    // during parallelization
+    // Running sequentially on a single thread
     if ((bx == 0) && (tx == 0)) {
-        for (uint32_t i = 0; i <= N-k; i++) {
+        for (uint32_t i = 0; i < numKmers; i++) { 
             uint32_t index = i/16;
             uint32_t shift1 = 2*(i%16);
             if (shift1 > 0) {
@@ -51,12 +42,12 @@ __global__ void kmerArrCreate(
                 kmer = d_compressedSeq[index] & mask;
             }
 
-            // Concatenate kmer value (first 32-bits) with its position (last
-            // 32-bits)
-            d_kmerArr[i] = kmer;
+            // Store ONLY the kmer value. No position concatenated.
+            d_kmerArr[i] = kmer; 
         }
     }
 }
+
 
 
 /**
@@ -67,6 +58,7 @@ void GpuAligner::seedTableOnGpu (
     uint32_t* compressedSeq,
     uint32_t seqLen,
     uint32_t kmerSize,
+    uint32_t numKmers,
     size_t* kmerArr) {
 
     // TODO: make sure to appropriately set the values below
@@ -75,20 +67,27 @@ void GpuAligner::seedTableOnGpu (
 
     std::string berr = cudaGetErrorString(cudaGetLastError());
     if (berr != "no error") printf("ERROR: Before kernel %s!\n", berr.c_str());
+
+
+    transferData2Device(compressedSeq, seqLen, kmerSize);
     
-    kmerArrCreate<<<numBlocks, blockSize>>>(compressedSeq, seqLen, kmerSize, kmerArr);
+    kmerArrCreate<<<numBlocks, blockSize>>>(d_seqs, numKmers, kmerSize, d_kmerArr);
 
     std::string aerr = cudaGetErrorString(cudaGetLastError());
     if (aerr != "no error") printf("ERROR: After kernel %s!\n", aerr.c_str());
     // Parallel sort the kmerPos array on the GPU device using the thrust
     // library (https://thrust.github.io/)
-    thrust::device_ptr<size_t> kmerArrPtr(kmerArr);
-    thrust::sort(kmerArrPtr, kmerArrPtr+seqLen-kmerSize+1);
+    thrust::device_ptr<size_t> kmerArrPtr(d_kmerArr);
+    thrust::sort(kmerArrPtr, kmerArrPtr + numKmers);
 
-    thrust::device_ptr<size_t> newEnd = thrust::unique(kmerArrPtr, kmerArrPtr + seqLen - kmerSize + 1);
+    thrust::device_ptr<size_t> newEnd = thrust::unique(kmerArrPtr, kmerArrPtr + numKmers);
 
     // Calculate the new size of the array containing only unique k-mers
     size_t numUniqueKmers = newEnd - kmerArrPtr;
+
+
+    transferData2Host(kmerArr, numKmers);
+
 
     // Wait for all computation on GPU device to finish. Needed to ensure
     // correct runtime profiling results for this function.

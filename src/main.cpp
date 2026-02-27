@@ -54,10 +54,10 @@ int main(int argc, char** argv) {
     }
 
     // Check input values
-    // if ((kmerSize < 2) || (kmerSize > 50)) {
-    //     std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
-    //     exit(1);
-    // }
+    if ((kmerSize < 2) || (kmerSize > 50)) {
+        std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
+        exit(1);
+    }
     if ((kmerWindow < 1) || (kmerWindow > 32)) {
         std::cerr << "ERROR! kmerWindow should be between 1 and 64." << std::endl;
         exit(1);
@@ -88,7 +88,6 @@ int main(int argc, char** argv) {
 
     // Example usage: Hashing a 21-mer canonical string
     const char* seq = "AACGTCGATCGATCGATCGATCCGTACGTCGATCGATCGATCGATCCGATCGATCGAACGTCGATCGATCGAACGTCGATCGATCGATCGATCTCGATCTCACGTCGATCGATCGATCGATCGATC";
-    uint32_t compressedSeq[(strlen(seq)+15)/16];
 
     uint32_t compressedSeqLen = (strlen(seq) + 15) / 16;
     uint32_t numKmers = strlen(seq) - kmerSize + 1;
@@ -96,9 +95,11 @@ int main(int argc, char** argv) {
     fprintf(stdout, "KmerSize = %d\n", kmerSize);
     fprintf(stdout, "compressedSeqLen = %d\n", compressedSeqLen);
     fprintf(stdout, "numKmers = %d\n", numKmers);
-    size_t kmerArr[numKmers];
 
-    twoBitCompress((char*)seq, strlen(seq), compressedSeq);
+    std::vector<uint32_t> compressedSeq(compressedSeqLen);
+    std::vector<size_t> kmerArr(numKmers);
+
+    twoBitCompress((char*)seq, strlen(seq), compressedSeq.data());
 
     fprintf(stdout, "Compressed sequence: ");
 
@@ -107,14 +108,13 @@ int main(int argc, char** argv) {
     }
     fprintf(stdout, "\n");
 
-    Aligner.seedTableOnGpu (
-        compressedSeq,
-        compressedSeqLen,
-        kmerSize,
-        kmerArr);
+    Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
 
+    Aligner.seedTableOnGpu (compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+
+    fprintf(stdout, "Kmers: ");
     for (uint32_t i = 0; i < numKmers; i++) {
-        fprintf(stdout, "%08x ", kmerArr[i]);
+        fprintf(stdout, "%08lx ", kmerArr[i]);
     }
     fprintf(stdout, "\n");
 
@@ -122,18 +122,3 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-// int main() {
-//     // Example usage: Hashing a 21-mer canonical string
-//     const char* kmer = "ACGTCGATCGATCGATCGATC";
-
-//     // MASH typically uses a constant seed like 42
-//     uint32_t seed = 42; 
-
-//     // Perform the hash
-//     uint32_t hash_value = MurmurHash3_x86_32(kmer, strlen(kmer), seed);
-
-//     std::cout << "Canonical k-mer: " << kmer << std::endl;
-//     std::cout << "MurmurHash3 (32-bit) value: " << hash_value << std::endl;
-    
-//     return 0;
-// }
