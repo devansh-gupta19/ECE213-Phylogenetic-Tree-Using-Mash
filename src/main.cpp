@@ -7,12 +7,9 @@
 #include <boost/program_options.hpp>
 #include "zlib.h"
 #include <stdio.h>
-#include "kseq.h"
 
 // For parsing the command line values
 namespace po = boost::program_options;
-
-KSEQ_INIT(gzFile, gzread); //file pointer type for FASTA encoded file
 
 int main(int argc, char** argv) {
     // Timer below helps with the performance profiling (see timer.hpp for more details)
@@ -57,10 +54,10 @@ int main(int argc, char** argv) {
     }
 
     // Check input values
-    // if ((kmerSize < 2) || (kmerSize > 50)) {
-    //     std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
-    //     exit(1);
-    // }
+    if ((kmerSize < 2) || (kmerSize > 50)) {
+        std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
+        exit(1);
+    }
     if ((kmerWindow < 1) || (kmerWindow > 32)) {
         std::cerr << "ERROR! kmerWindow should be between 1 and 64." << std::endl;
         exit(1);
@@ -80,48 +77,29 @@ int main(int argc, char** argv) {
     // Read reference sequence as kseq_t object
     timer.Start();
     fprintf(stdout, "Reading reference sequence and compressing to two-bit encoding.\n");
-//    gzFile fp = gzopen(refFilename.c_str(), "r");
-//    if (!fp) {
-//        fprintf(stderr, "ERROR: Cannot open file: %s\n", refFilename.c_str());
-//        exit(1);
-//    }
+    gzFile fp = gzopen(refFilename.c_str(), "r");
+    if (!fp) {
+        fprintf(stderr, "ERROR: Cannot open file: %s\n", refFilename.c_str());
+        exit(1);
+    }
 
 
     GpuAligner Aligner;
 
-    gzFile fp = gzopen("../dataset_dipper/t2.unaligned.fa", "r");
-    if (!fp) {
-        perror("Error opening file");
-        return 1;
-    }
+    // Example usage: Hashing a 21-mer canonical string
+    const char* seq = "AACGTCGATCGATCGATCGATCCGTACGTCGATCGATCGATCGATCCGATCGATCGAACGTCGATCGATCGAACGTCGATCGATCGATCGATCTCGATCTCACGTCGATCGATCGATCGATCGATC";
 
-    // STEP 2: Initialize the parser
-    kseq_t *rseq = kseq_init(fp);
-    int l = kseq_read(rseq);
-    
-    if(l>-0){
-        fprintf(stdout, "%s\n", rseq->seq.s);
-    }
-    else{
-        fprintf(stdout, "Error parsing file");
-    }
-    char* seq = rseq->seq.s;
-    uint32_t compressedSeqLen = (rseq->seq.l + 15) / 16;
-    uint32_t numKmers = (rseq->seq.l >= kmerSize) ? (rseq->seq.l - kmerSize + 1) : 0;
-
-    fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
-
-    // FIX: Allocate on the HEAP, not the STACK
-    std::vector<uint32_t> compressedSeq(compressedSeqLen);
-    std::vector<size_t> kmerArr(numKmers);
-    
-    twoBitCompress(seq, rseq->seq.l, compressedSeq.data());
-
+    uint32_t compressedSeqLen = (strlen(seq) + 15) / 16;
+    uint32_t numKmers = strlen(seq) - kmerSize + 1;
 
     fprintf(stdout, "KmerSize = %d\n", kmerSize);
     fprintf(stdout, "compressedSeqLen = %d\n", compressedSeqLen);
     fprintf(stdout, "numKmers = %d\n", numKmers);
-    //size_t kmerArr[numKmers];
+
+    std::vector<uint32_t> compressedSeq(compressedSeqLen);
+    std::vector<size_t> kmerArr(numKmers);
+
+    twoBitCompress((char*)seq, strlen(seq), compressedSeq.data());
 
     fprintf(stdout, "Compressed sequence: ");
 
@@ -130,38 +108,17 @@ int main(int argc, char** argv) {
     }
     fprintf(stdout, "\n");
 
-//    Aligner.seedTableOnGpu(
-//        compressedSeq.data(),
-//        compressedSeqLen,
-//        kmerSize,
-//        kmerArr.data()
-//   );
+    Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
 
-   // for (uint32_t i = 0; i < numKmers; i++) {
-   //     fprintf(stdout, "%08x ", kmerArr[i]);
-   // }
+    Aligner.seedTableOnGpu (compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
 
-    //for (uint32_t i = 0; i < (numKmers > 10 ? 10 : numKmers); i++) {
-    //    fprintf(stdout, "%016lx ", kmerArr[i]);
-   // }
-    //fprintf(stdout, "\n");
+    fprintf(stdout, "Kmers: ");
+    for (uint32_t i = 0; i < numKmers; i++) {
+        fprintf(stdout, "%08lx ", kmerArr[i]);
+    }
+    fprintf(stdout, "\n");
 
 
     return 0;
 }
 
-// int main() {
-//     // Example usage: Hashing a 21-mer canonical string
-//     const char* kmer = "ACGTCGATCGATCGATCGATC";
-
-//     // MASH typically uses a constant seed like 42
-//     uint32_t seed = 42; 
-
-//     // Perform the hash
-//     uint32_t hash_value = MurmurHash3_x86_32(kmer, strlen(kmer), seed);
-
-//     std::cout << "Canonical k-mer: " << kmer << std::endl;
-//     std::cout << "MurmurHash3 (32-bit) value: " << hash_value << std::endl;
-    
-//     return 0;
-// }
