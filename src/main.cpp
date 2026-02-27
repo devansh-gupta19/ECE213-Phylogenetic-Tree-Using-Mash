@@ -7,9 +7,12 @@
 #include <boost/program_options.hpp>
 #include "zlib.h"
 #include <stdio.h>
+#include "kseq.h"
 
 // For parsing the command line values
 namespace po = boost::program_options;
+
+KSEQ_INIT(gzFile, gzread); //file pointer type for FASTA encoded file
 
 int main(int argc, char** argv) {
     // Timer below helps with the performance profiling (see timer.hpp for more details)
@@ -77,7 +80,7 @@ int main(int argc, char** argv) {
     // Read reference sequence as kseq_t object
     timer.Start();
     fprintf(stdout, "Reading reference sequence and compressing to two-bit encoding.\n");
-    gzFile fp = gzopen(refFilename.c_str(), "r");
+    gzFile fp = gzopen("../dataset_dipper/t2.unaligned.fa", "r");
     if (!fp) {
         fprintf(stderr, "ERROR: Cannot open file: %s\n", refFilename.c_str());
         exit(1);
@@ -86,39 +89,46 @@ int main(int argc, char** argv) {
 
     GpuAligner Aligner;
 
-    // Example usage: Hashing a 21-mer canonical string
-    const char* seq = "AACGTCGATCGATCGATCGATCCGTACGTCGATCGATCGATCGATCCGATCGATCGAACGTCGATCGATCGAACGTCGATCGATCGATCGATCTCGATCTCACGTCGATCGATCGATCGATCGATC";
+    
+    kseq_t *seq = kseq_init(fp);
+    int l;
+    uint32_t seqCount = 0;
 
-    uint32_t compressedSeqLen = (strlen(seq) + 15) / 16;
-    uint32_t numKmers = strlen(seq) - kmerSize + 1;
+    while ((l = kseq_read(seq)) >= 0) {
+        fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, seq->name.s, seq->seq.l);
 
-    fprintf(stdout, "KmerSize = %d\n", kmerSize);
-    fprintf(stdout, "compressedSeqLen = %d\n", compressedSeqLen);
-    fprintf(stdout, "numKmers = %d\n", numKmers);
+        uint32_t compressedSeqLen = (seq->seq.l + 15) / 16;
+        uint32_t numKmers = (seq->seq.l >= kmerSize) ? (seq->seq.l - kmerSize + 1) : 0;
 
-    std::vector<uint32_t> compressedSeq(compressedSeqLen);
-    std::vector<size_t> kmerArr(numKmers);
+        fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
 
-    twoBitCompress((char*)seq, strlen(seq), compressedSeq.data());
+        std::vector<uint32_t> compressedSeq(compressedSeqLen);
+        std::vector<size_t> kmerArr(numKmers);
 
-    fprintf(stdout, "Compressed sequence: ");
+        twoBitCompress(seq->seq.s, seq->seq.l, compressedSeq.data());
 
-    for (uint32_t i = 0; i < compressedSeqLen; i++) {
-        fprintf(stdout, "%08x ", compressedSeq[i]);
+        fprintf(stdout, "Compressed sequence: ");
+        for (uint32_t i = 0; i < compressedSeqLen; i++) {
+            fprintf(stdout, "%08x ", compressedSeq[i]);
+        }
+        fprintf(stdout, "\n");
+
+        Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
+        Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+
+        fprintf(stdout, "Kmers: ");
+        for (uint32_t i = 0; i < numKmers; i++) {
+            fprintf(stdout, "%08lx ", kmerArr[i]);
+        }
+        fprintf(stdout, "\n");
+
+        seqCount++;
     }
-    fprintf(stdout, "\n");
 
-    Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
-
-    Aligner.seedTableOnGpu (compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
-
-    fprintf(stdout, "Kmers: ");
-    for (uint32_t i = 0; i < numKmers; i++) {
-        fprintf(stdout, "%08lx ", kmerArr[i]);
+    if (seqCount == 0) {
+        fprintf(stderr, "ERROR: No sequences found in file.\n");
+        exit(1);
     }
-    fprintf(stdout, "\n");
-
-
-    return 0;
+    fprintf(stdout, "\nProcessed %u sequences total.\n", seqCount);
 }
 
