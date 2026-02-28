@@ -53,3 +53,53 @@ void GpuAligner::clearAndReset () {
     cudaFree(d_kmerArr);
     cudaFree(d_hashArr);
 }
+
+
+void GpuAligner::allocateMashMem(int totalSketchElements, int numPairs) {
+    // 1. Sketch Data
+    CUDA_CHECK(cudaMalloc(&d_allSketches, totalSketchElements * sizeof(uint64_t)));
+
+    // 2. Pair Indices
+    CUDA_CHECK(cudaMalloc(&d_pairA_idx, numPairs * sizeof(int)));
+    CUDA_CHECK(cudaMalloc(&d_pairB_idx, numPairs * sizeof(int)));
+
+    // 3. Output Arrays
+    CUDA_CHECK(cudaMalloc(&d_out_J, numPairs * sizeof(float)));
+    CUDA_CHECK(cudaMalloc(&d_out_D, numPairs * sizeof(float)));
+    CUDA_CHECK(cudaMalloc(&d_out_P, numPairs * sizeof(float)));
+    
+    // Zero out output arrays just to be safe
+    CUDA_CHECK(cudaMemset(d_out_J, 0, numPairs * sizeof(float)));
+    CUDA_CHECK(cudaMemset(d_out_D, 0, numPairs * sizeof(float)));
+    CUDA_CHECK(cudaMemset(d_out_P, 0, numPairs * sizeof(float)));
+}
+
+/**
+ * Transfers the flattened sketches and pairing indices from CPU to GPU.
+ */
+void GpuAligner::transferMashDataToDevice(const uint64_t* h_flatSketches, const int* h_pairA_idx, const int* h_pairB_idx, int totalSketchElements, int numPairs) {
+    CUDA_CHECK(cudaMemcpy(d_allSketches, h_flatSketches, totalSketchElements * sizeof(uint64_t), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(d_pairA_idx, h_pairA_idx, numPairs * sizeof(int), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(d_pairB_idx, h_pairB_idx, numPairs * sizeof(int), cudaMemcpyHostToDevice));
+}
+
+/**
+ * Retrieves the computed Jaccard, Distance, and P-value arrays back to the CPU.
+ */
+void GpuAligner::transferMashResultsToHost(float* h_out_J, float* h_out_D, float* h_out_P, int numPairs) {
+    CUDA_CHECK(cudaMemcpy(h_out_J, d_out_J, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
+    CUDA_CHECK(cudaMemcpy(h_out_D, d_out_D, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
+    CUDA_CHECK(cudaMemcpy(h_out_P, d_out_P, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
+}
+
+/**
+ * Frees all device memory associated with the MASH calculations.
+ */
+void GpuAligner::freeMashMem() {
+    CUDA_CHECK(cudaFree(d_allSketches));
+    CUDA_CHECK(cudaFree(d_pairA_idx));
+    CUDA_CHECK(cudaFree(d_pairB_idx));
+    CUDA_CHECK(cudaFree(d_out_J));
+    CUDA_CHECK(cudaFree(d_out_D));
+    CUDA_CHECK(cudaFree(d_out_P));
+}
