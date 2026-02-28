@@ -2,88 +2,144 @@
 #include <iostream>
 #include <cstdint>
 #include <cstring>
+#include <thrust/sort.h>
+#include <thrust/scan.h>
+#include <thrust/binary_search.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/unique.h>
 
-// Helper function to rotate bits left
-__device__ uint32_t rotl32(uint32_t x, int8_t r) {
-    return (x << r) | (x >> (32 - r));
+#define HASH_SEED 1337
+// Helper function to rotate 64-bits left
+__device__ inline uint64_t rotl64(uint64_t x, int8_t r) {
+    return (x << r) | (x >> (64 - r));
 }
 
-// Final mixing function (The Avalanche / fmix step)
-__device__ uint32_t fmix32(uint32_t h) {
-    h ^= h >> 16;
-    h *= 0x85ebca6b;
-    h ^= h >> 13;
-    h *= 0xc2b2ae35;
-    h ^= h >> 16;
-    return h;
+// 64-bit final mixing function (Avalanche)
+__device__ inline uint64_t fmix64(uint64_t k) {
+    k ^= k >> 33;
+    k *= 0xff51afd7ed558ccdULL;
+    k ^= k >> 33;
+    k *= 0xc4ceb9fe1a85ec53ULL;
+    k ^= k >> 33;
+    return k;
 }
 
-// Main MurmurHash3 function (32-bit version)
-__global__ void MurmurHash3_x86_32(const void* key, int len, uint32_t seed, uint32_t *hOut) {
+// MurmurHash3 (x64_128 variant) modified to output 64 bits
+__device__ uint64_t MurmurHash3_x64_64(const void* key, int len, uint64_t seed) {
     const uint8_t* data = (const uint8_t*)key;
-    const int nblocks = len / 4;
+    const int nblocks = len / 16; 
 
-    // --- 1. Initialization ---
-    uint32_t h1 = seed;
-    const uint32_t c1 = 0xcc9e2d51;
-    const uint32_t c2 = 0x1b873593;
+    uint64_t h1 = seed;
+    uint64_t h2 = seed;
+    const uint64_t c1 = 0x87c37b91114253d5ULL;
+    const uint64_t c2 = 0x4cf5ad432745937fULL;
 
-    // --- 2. The Body (Block Processing) ---
-    // Read the data in 4-byte chunks
-    const uint32_t* blocks = (const uint32_t*)(data + nblocks * 4);
+    const uint64_t* blocks = (const uint64_t*)(data);
 
-    for (int i = -nblocks; i; i++) {
-        uint32_t k1 = blocks[i];
+    for (int i = 0; i < nblocks; i++) {
+        uint64_t k1 = blocks[i * 2 + 0];
+        uint64_t k2 = blocks[i * 2 + 1];
 
-        // Scramble the block
-        k1 *= c1;
-        k1 = rotl32(k1, 15);
-        k1 *= c2;
+        k1 *= c1; k1 = rotl64(k1, 31); k1 *= c2; h1 ^= k1;
+        h1 = rotl64(h1, 27); h1 += h2; h1 = h1 * 5 + 0x52dce729ULL;
 
-        // Mix the scrambled block into the hash state
-        h1 ^= k1;
-        h1 = rotl32(h1, 13);
-        h1 = h1 * 5 + 0xe6546b64;
+        k2 *= c2; k2 = rotl64(k2, 33); k2 *= c1; h2 ^= k2;
+        h2 = rotl64(h2, 31); h2 += h1; h2 = h2 * 5 + 0x38495ab5ULL;
     }
 
-    // --- 3. The Tail (Remainder Processing) ---
-    // Handle the remaining bytes (1, 2, or 3 bytes)
-    const uint8_t* tail = (const uint8_t*)(data + nblocks * 4);
-    uint32_t k1 = 0;
+    const uint8_t* tail = (const uint8_t*)(data + nblocks * 16);
+    uint64_t k1 = 0;
+    uint64_t k2 = 0;
 
-    // Fall-through switch statement to pack leftover bytes
-    switch (len & 3) {
-        case 3: k1 ^= tail[2] << 16;
-        case 2: k1 ^= tail[1] << 8;
-        case 1: k1 ^= tail[0];
-                k1 *= c1; 
-                k1 = rotl32(k1, 15); 
-                k1 *= c2; 
-                h1 ^= k1;
+    switch (len & 15) {
+        case 15: k2 ^= ((uint64_t)tail[14]) << 48;
+        case 14: k2 ^= ((uint64_t)tail[13]) << 40;
+        case 13: k2 ^= ((uint64_t)tail[12]) << 32;
+        case 12: k2 ^= ((uint64_t)tail[11]) << 24;
+        case 11: k2 ^= ((uint64_t)tail[10]) << 16;
+        case 10: k2 ^= ((uint64_t)tail[ 9]) << 8;
+        case  9: k2 ^= ((uint64_t)tail[ 8]) << 0;
+                 k2 *= c2; k2 = rotl64(k2, 33); k2 *= c1; h2 ^= k2;
+        case  8: k1 ^= ((uint64_t)tail[ 7]) << 56;
+        case  7: k1 ^= ((uint64_t)tail[ 6]) << 48;
+        case  6: k1 ^= ((uint64_t)tail[ 5]) << 40;
+        case  5: k1 ^= ((uint64_t)tail[ 4]) << 32;
+        case  4: k1 ^= ((uint64_t)tail[ 3]) << 24;
+        case  3: k1 ^= ((uint64_t)tail[ 2]) << 16;
+        case  2: k1 ^= ((uint64_t)tail[ 1]) << 8;
+        case  1: k1 ^= ((uint64_t)tail[ 0]) << 0;
+                 k1 *= c1; k1 = rotl64(k1, 31); k1 *= c2; h1 ^= k1;
     };
 
-    // --- 4. Finalization & Avalanche ---
-    // XOR in the total length of the key
-    h1 ^= len;
+    h1 ^= len; h2 ^= len;
+    h1 += h2;  h2 += h1;
+    h1 = fmix64(h1); h2 = fmix64(h2);
+    h1 += h2;  h2 += h1;
 
-    // Force all bits to avalanche
-    *hOut = fmix32(h1);
+    return h1; 
 }
 
-
-void GpuAligner::MurmurHashCaller(const void* key, int len, uint32_t seed, uint32_t *hOut) {
-    int numBlocks = 1; // i.e. number of thread blocks on the GPU
-    int blockSize = 1; // i.e. number of GPU threads per thread block
-
-    std::string berr = cudaGetErrorString(cudaGetLastError());
-    if (berr != "no error") printf("ERROR: Before kernel %s!\n", berr.c_str());
+__global__ void HashAllKmersKernel(const uint64_t* d_kmerArr, uint64_t* d_hashArr, uint32_t numKmers, int kmerByteLen) {
+    // Standard 1D grid stride
+    // int tid = blockIdx.x * blockDim.x + threadIdx.x;
     
-    MurmurHash3_x86_32<<<numBlocks, blockSize>>>(key, len, seed, hOut);
+    // if (tid < numKmers) {
+    //     // Read the k-mer (assuming it is stored as an 8-byte size_t/uint64_t due to 2-bit encoding)
+    //     uint64_t kmer = d_kmerArr[tid]; 
+        
+    //     // Hash it and store in the parallel hash array
+    //     d_hashArr[tid] = MurmurHash3_x64_64(&kmer, kmerByteLen, HASH_SEED);
+    // }
 
-    std::string aerr = cudaGetErrorString(cudaGetLastError());
-    if (aerr != "no error") printf("ERROR: After kernel %s!\n", aerr.c_str());
-    // Wait for all computation on GPU device to finish. Needed to ensure
-    // correct runtime profiling results for this function.
-    cudaDeviceSynchronize();
+    if ((threadIdx.x == 0) && (blockIdx.x == 0))
+    {
+        for (int32_t i = 0; i < numKmers; i++)
+        {
+             uint64_t kmer = d_kmerArr[i]; 
+
+            // Hash it and store in the parallel hash array
+            d_hashArr[i] = MurmurHash3_x64_64(&kmer, kmerByteLen, HASH_SEED);
+        }
+    }
 }
 
+void GpuAligner::MurmurHashCaller(uint32_t numKmers, int kmerByteLen, uint32_t bottomK, uint64_t* hOut_sketch) {
+    int numBlocks = 1; 
+    int blockSize = 1; 
+
+    // Clear previous errors
+    cudaGetLastError(); 
+
+    // Launch Kernel
+    HashAllKmersKernel<<<numBlocks, blockSize>>>(d_kmerArr, d_hashArr, numKmers, kmerByteLen);
+
+    // Error Checking
+    cudaError_t err = cudaGetLastError();
+    if (err != cudaSuccess) {
+        printf("ERROR: Kernel launch failed: %s!\n", cudaGetErrorString(err));
+    }
+    
+    // Synchronize
+    err = cudaDeviceSynchronize();
+    if (err != cudaSuccess) {
+        printf("ERROR: Device sync failed: %s!\n", cudaGetErrorString(err));
+    }
+
+    // Sort the hashed array on the GPU to find the smallest values (Bottom-k)
+    // Thrust perfectly maps to CUDA's execution policy and is highly optimized.
+    thrust::device_ptr<uint64_t> dev_hash_ptr(d_hashArr);
+    thrust::sort(thrust::device, dev_hash_ptr, dev_hash_ptr + numKmers);
+
+    // 4. Extract the bottom 'K' hashes
+    // Ensure we don't try to copy more k-mers than actually exist in small sequences
+    uint32_t elementsToCopy = (numKmers < bottomK) ? numKmers : bottomK;
+    
+    // Copy the sketch (smallest hashes) back to host memory (or wherever hOut_sketch lives)
+    err = cudaMemcpy(hOut_sketch, d_hashArr, elementsToCopy * sizeof(uint64_t), cudaMemcpyDeviceToHost);
+    
+    if (err != cudaSuccess) {
+        printf("ERROR: Memcpy failed: %s!\n", cudaGetErrorString(err));
+    }
+
+}

@@ -28,22 +28,31 @@ __global__ void kmerArrCreate(
     uint32_t k = kmerSize;
     // Safely cast to 64-bit to prevent bitwise shift overflow
     uint64_t mask = (1ULL << (2*k))-1; 
-    size_t kmer = 0;
 
     // Running sequentially on a single thread
     if ((bx == 0) && (tx == 0)) {
         for (uint32_t i = 0; i < numKmers; i++) { 
-            uint32_t index = i/16;
-            uint32_t shift1 = 2*(i%16);
-            if (shift1 > 0) {
-                uint32_t shift2 = 32-shift1;
-                kmer = ((d_compressedSeq[index] >> shift1) | (d_compressedSeq[index+1] << shift2)) & mask;
+            uint32_t bit_offset = i * 2;
+            uint32_t index = bit_offset / 32;
+            uint32_t shift = bit_offset % 32;
+
+            uint64_t kmer = 0;
+            
+            // Cast to uint64_t BEFORE bitwise operations
+            uint64_t w0 = d_compressedSeq[index];
+            uint64_t w1 = d_compressedSeq[index + 1];
+
+            if (shift <= (64 - 2 * kmerSize)) {
+                // Fits within two 32-bit words
+                kmer = (w0 >> shift) | (w1 << (32 - shift));
             } else {
-                kmer = d_compressedSeq[index] & mask;
+                // Spans across three 32-bit words
+                uint64_t w2 = d_compressedSeq[index + 2];
+                kmer = (w0 >> shift) | (w1 << (32 - shift)) | (w2 << (64 - shift));
             }
 
-            // Store ONLY the kmer value. No position concatenated.
-            d_kmerArr[i] = kmer; 
+            // Store ONLY the kmer value masked to the correct bit length
+            d_kmerArr[i] = kmer & mask;
         }
     }
 }
@@ -54,7 +63,7 @@ __global__ void kmerArrCreate(
  * Constructs seed table, consisting and kmerPos arrrays
  * on the GPU.
 */
-void GpuAligner::seedTableOnGpu (
+uint32_t GpuAligner::seedTableOnGpu (
     uint32_t* compressedSeq,
     uint32_t seqLen,
     uint32_t kmerSize,
@@ -85,11 +94,13 @@ void GpuAligner::seedTableOnGpu (
     // Calculate the new size of the array containing only unique k-mers
     size_t numUniqueKmers = newEnd - kmerArrPtr;
 
-
+    // TODO: Eventually remove this function, no need to transfer kmers to host
     transferData2Host(kmerArr, numKmers);
 
 
     // Wait for all computation on GPU device to finish. Needed to ensure
     // correct runtime profiling results for this function.
     cudaDeviceSynchronize();
+
+    return numUniqueKmers;
 }

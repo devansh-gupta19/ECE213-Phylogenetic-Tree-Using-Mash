@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     std::string readsFilename;
     uint32_t readSize;
     uint32_t kmerSize;
-    uint32_t kmerWindow;
+    uint32_t bottomK;
     uint32_t maxReads;
     uint32_t batchSize;
     uint32_t numThreads;
@@ -31,12 +31,11 @@ int main(int argc, char** argv) {
     po::options_description desc{"Options"};
     desc.add_options()
     // Arguments for constructing seedTable
-    ("reference,r", po::value<std::string>(&refFilename)->required(), "Input reference sequence in FASTA file format [REQUIRED].")
     ("kmerSize,k", po::value<uint32_t>(&kmerSize)->default_value(14), "Minimizer seed size (range: 2-15)")
     // Arguments for readMapper
     ("reads,q", po::value<std::string>(&readsFilename), "Input read sequences in FASTA file format.")
     ("readSize,s", po::value<uint32_t>(&readSize)->default_value(256), "Size of the read in number of bases [DO NOT CHANGE THE DEFAULT OF 256!]")
-    ("kmerWindow,w", po::value<uint32_t>(&kmerWindow)->default_value(16), "Minimizer window size (range: 1-32)")
+    ("bottomK,w", po::value<uint32_t>(&bottomK)->default_value(100), "Size of MASH sketch (range: 1-32)")
     ("maxReads,N", po::value<uint32_t>(&maxReads)->default_value(1e6), "Maximum number of reads to read from the input read sequence file")
     ("batchSize,b", po::value<uint32_t>(&batchSize)->default_value(32), "Number of reads in a batch")
     // Other options
@@ -57,14 +56,14 @@ int main(int argc, char** argv) {
     }
 
     // Check input values
-    if ((kmerSize < 2) || (kmerSize > 50)) {
-        std::cerr << "ERROR! kmerSize should be between 2 and 15." << std::endl;
+    if ((kmerSize < 2) || (kmerSize > 32)) {
+        std::cerr << "ERROR! kmerSize should be between 2 and 32." << std::endl;
         exit(1);
     }
-    if ((kmerWindow < 1) || (kmerWindow > 32)) {
-        std::cerr << "ERROR! kmerWindow should be between 1 and 64." << std::endl;
-        exit(1);
-    }
+    // if ((bottomK < 1) || (bottomK > 32)) {
+    //     std::cerr << "ERROR! bottomK should be between 1 and 64." << std::endl;
+    //     exit(1);
+    // }
     if ((numThreads < 1) || (numThreads > 8)) {
         std::cerr << "ERROR! numThreads should be between 1 and 8." << std::endl;
         exit(1);
@@ -93,8 +92,10 @@ int main(int argc, char** argv) {
     kseq_t *seq = kseq_init(fp);
     int l;
     uint32_t seqCount = 0;
+    uint32_t totReads = 0;
 
-    while ((l = kseq_read(seq)) >= 0) {
+    while ((l = kseq_read(seq)) >= 0 && (totReads < maxReads)) {
+        totReads++;
         fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, seq->name.s, seq->seq.l);
 
         uint32_t compressedSeqLen = (seq->seq.l + 15) / 16;
@@ -104,24 +105,34 @@ int main(int argc, char** argv) {
 
         std::vector<uint32_t> compressedSeq(compressedSeqLen);
         std::vector<size_t> kmerArr(numKmers);
+    
+        uint32_t actualSketchSize = (numKmers < bottomK) ? numKmers : bottomK;
+        std::vector<uint64_t> hOut_sketch(actualSketchSize);
 
         twoBitCompress(seq->seq.s, seq->seq.l, compressedSeq.data());
 
-        fprintf(stdout, "Compressed sequence: ");
-        for (uint32_t i = 0; i < compressedSeqLen; i++) {
-            fprintf(stdout, "%08x ", compressedSeq[i]);
-        }
-        fprintf(stdout, "\n");
+        // fprintf(stdout, "Compressed sequence: ");
+        // for (uint32_t i = 0; i < compressedSeqLen; i++) {
+        //     fprintf(stdout, "%08x ", compressedSeq[i]);
+        // }
+        // fprintf(stdout, "\n");
 
         Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
-        Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+        uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+        fprintf(stdout, "Unique numKmers = %u\n", numUniqueKmers);
+        // fprintf(stdout, "Kmers: ");
+        // for (uint32_t i = 0; i < numKmers; i++) {
+        //     fprintf(stdout, "%08lx ", kmerArr[i]);
+        // }
 
-        fprintf(stdout, "Kmers: ");
-        for (uint32_t i = 0; i < numKmers; i++) {
-            fprintf(stdout, "%08lx ", kmerArr[i]);
+        Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
+        fprintf(stdout, "MASH Sketch (Bottom %u hashes): \n", actualSketchSize);
+        for (uint32_t i = 0; i < actualSketchSize; i++) {
+            fprintf(stdout, "%016lx ", hOut_sketch[i]);
         }
-        fprintf(stdout, "\n");
 
+        fprintf(stdout, "\n\n\n");
+        Aligner.clearAndReset();
         seqCount++;
     }
 
