@@ -88,7 +88,8 @@ int main(int argc, char** argv) {
 
     GpuAligner Aligner;
 
-    
+    std::vector<std::vector<uint64_t>> allSketches;
+    std::vector<std::string> seqNames;
     kseq_t *seq = kseq_init(fp);
     int l;
     uint32_t seqCount = 0;
@@ -119,27 +120,94 @@ int main(int argc, char** argv) {
 
         Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
         uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
-        fprintf(stdout, "Unique numKmers = %u\n", numUniqueKmers);
+        // fprintf(stdout, "Unique numKmers = %u\n", numUniqueKmers);
         // fprintf(stdout, "Kmers: ");
         // for (uint32_t i = 0; i < numKmers; i++) {
         //     fprintf(stdout, "%08lx ", kmerArr[i]);
         // }
 
         Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
-        fprintf(stdout, "MASH Sketch (Bottom %u hashes): \n", actualSketchSize);
-        for (uint32_t i = 0; i < actualSketchSize; i++) {
-            fprintf(stdout, "%016lx ", hOut_sketch[i]);
-        }
+        // fprintf(stdout, "MASH Sketch (Bottom %u hashes): \n", actualSketchSize);
+        // for (uint32_t i = 0; i < actualSketchSize; i++) {
+        //     fprintf(stdout, "%016lx ", hOut_sketch[i]);
+        // }
 
-        fprintf(stdout, "\n\n\n");
+        // Store the valid sketch and sequence name for later pairwise comparison
+        allSketches.push_back(hOut_sketch);
+        seqNames.push_back(std::string(seq->name.s));
+
+        fprintf(stdout, "\n");
         Aligner.clearAndReset();
         seqCount++;
-    }
+    } // End of while loop to calculate MASH sketches for all sequences
 
     if (seqCount == 0) {
         fprintf(stderr, "ERROR: No sequences found in file.\n");
         exit(1);
     }
     fprintf(stdout, "\nProcessed %u sequences total.\n", seqCount);
+
+    fprintf(stdout, "\n\n\n");
+    // Pairwise MASH Distance Computation
+    int numSequences = allSketches.size();
+    if (numSequences < 2) {
+        fprintf(stderr, "Need at least 2 sequences to compare.\n");
+        return 1;
+    }
+
+    int sketchSize = bottomK; // Assuming all valid sketches are size bottomK
+    // Number of pairs = nC2
+    int numPairs = (numSequences * (numSequences - 1)) / 2;
+
+    // 1. Flatten all sketches into a single 1D vector
+    std::vector<uint64_t> flatSketches(numSequences * sketchSize);
+    for (int i = 0; i < numSequences; ++i) {
+        std::copy(allSketches[i].begin(), allSketches[i].end(), flatSketches.begin() + (i * sketchSize));
+    }
+
+    // 2. Build the pair indexing arrays for the Upper Triangular Matrix
+    std::vector<int> h_pairA_idx(numPairs);
+    std::vector<int> h_pairB_idx(numPairs);
+    
+    int pairCount = 0;
+    for (int i = 0; i < numSequences; ++i) {
+        for (int j = i + 1; j < numSequences; ++j) {
+            h_pairA_idx[pairCount] = i;
+            h_pairB_idx[pairCount] = j;
+            pairCount++;
+        }
+    }
+
+    // 3. Allocate Host memory for the results
+    std::vector<float> h_out_J(numPairs);
+    std::vector<float> h_out_D(numPairs);
+    std::vector<float> h_out_P(numPairs);
+
+    fprintf(stdout, "Data preparation completed in %ld msec.\n", timer.Stop());
+    fprintf(stdout, "Launching GPU kernel for %d pairs...\n", numPairs);
+    timer.Start();
+
+    int totalSketchElements = flatSketches.size();
+    Aligner.allocateMashMem(totalSketchElements, numPairs);
+    Aligner.transferMashDataToDevice(flatSketches.data(), h_pairA_idx.data(), h_pairB_idx.data(), totalSketchElements, numPairs);
+
+    Aligner.MashDistanceCalculationCaller(numPairs, sketchSize, kmerSize);
+
+    Aligner.transferMashResultsToHost(h_out_J.data(), h_out_D.data(), h_out_P.data(), numPairs);
+
+    fprintf(stdout, "GPU Pairwise calculation completed in %ld msec.\n", timer.Stop());
+
+    // 4. Print Results
+    for (int p = 0; p < numPairs; ++p) {
+        int idxA = h_pairA_idx[p];
+        int idxB = h_pairB_idx[p];
+        fprintf(stdout, "[%s] vs [%s] | Jaccard: %.4f | Distance: %.4f | P-Value: %.2e\n", 
+                seqNames[idxA].c_str(), seqNames[idxB].c_str(), h_out_J[p], h_out_D[p], h_out_P[p]);
+    }
+    Aligner.freeMashMem();
+
+
+    kseq_destroy(seq);
+    gzclose(fp);
 }
 

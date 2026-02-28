@@ -47,6 +47,7 @@ add_executable (kmerTest
     src/gpuProperty.cu
     src/twoBitCompressor.cpp
     src/kmer.cu
+	src/mash.cu
     src/main.cpp)
 
 target_link_libraries(kmerTest PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} TBB::tbb)
