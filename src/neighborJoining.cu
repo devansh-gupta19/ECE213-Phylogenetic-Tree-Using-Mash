@@ -3,10 +3,7 @@
 #include <float.h>
 #include "masterHeader.h"
 
-// ============================================================================
-// Kernel 1: Parallel Setup - Maps 1D Mash output to 2D symmetric matrix
-// ============================================================================
-__global__ void InitNJMatrixKernel(
+__global__ void SequentialInitNJMatrixKernel(
     int numSeqs,
     int numPairs,
     const int* d_pairA_idx,
@@ -15,107 +12,24 @@ __global__ void InitNJMatrixKernel(
     float* d_distMatrix,
     bool* d_active) 
 {
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
+    // Restrict execution to exactly one thread
+    if (threadIdx.x != 0 || blockIdx.x != 0) return;
+
     int totalNodes = 2 * numSeqs - 1;
 
-    // 1. Populate the 2D symmetric distance matrix from the 1D arrays
-    if (tid < numPairs) {
-        int r = d_pairA_idx[tid];
-        int c = d_pairB_idx[tid];
-        float dist = d_out_D[tid];
+    // 1. Populate the 2D symmetric distance matrix using a standard loop
+    for (int i = 0; i < numPairs; ++i) {
+        int r = d_pairA_idx[i];
+        int c = d_pairB_idx[i];
+        float dist = d_out_D[i];
         
         d_distMatrix[r * totalNodes + c] = dist;
         d_distMatrix[c * totalNodes + r] = dist; // Symmetric
     }
 
-    // 2. Initialize the active mask (only original sequences 0 to numSeqs-1 are active initially)
-    if (tid < totalNodes) {
-        d_active[tid] = (tid < numSeqs);
-    }
-}
-
-// ============================================================================
-// Kernel 2: Sequential Neighbor Joining Algorithm
-// ============================================================================
-__global__ void SequentialNeighborJoiningKernel(
-    float* d_distMatrix,  
-    bool* d_active,       
-    float* d_r,           
-    int* d_left_child,    
-    int* d_right_child,   
-    float* d_dist_left,   
-    float* d_dist_right,  
-    int numSeqs)
-{
-    // Restrict execution to a single thread
-    if (threadIdx.x != 0 || blockIdx.x != 0) return;
-
-    int totalNodes = 2 * numSeqs - 1;
-    int currentNodesCount = numSeqs;
-    int nextNodeId = numSeqs;
-
-    while (currentNodesCount > 2) {
-        // 1. Calculate Net Divergence r[i]
-        for (int i = 0; i < nextNodeId; ++i) {
-            d_r[i] = 0.0f;
-            if (!d_active[i]) continue;
-            
-            for (int j = 0; j < nextNodeId; ++j) {
-                if (d_active[j] && i != j) {
-                    d_r[i] += d_distMatrix[i * totalNodes + j];
-                }
-            }
-        }
-
-        // 2. Calculate Q-matrix and find the minimum pair
-        float minQ = FLT_MAX;
-        int min_i = -1, min_j = -1;
-
-        for (int i = 0; i < nextNodeId; ++i) {
-            if (!d_active[i]) continue;
-            for (int j = i + 1; j < nextNodeId; ++j) {
-                if (!d_active[j]) continue;
-
-                float dist_ij = d_distMatrix[i * totalNodes + j];
-                float q = (currentNodesCount - 2) * dist_ij - d_r[i] - d_r[j];
-
-                if (q < minQ) {
-                    minQ = q;
-                    min_i = i;
-                    min_j = j;
-                }
-            }
-        }
-
-        // 3. Compute Branch Lengths and Update Tree Topology
-        float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
-        float dist_i_u = 0.5f * dist_ij + (d_r[min_i] - d_r[min_j]) / (2.0f * (currentNodesCount - 2));
-        float dist_j_u = dist_ij - dist_i_u;
-
-        d_left_child[nextNodeId] = min_i;
-        d_right_child[nextNodeId] = min_j;
-        d_dist_left[nextNodeId] = dist_i_u;
-        d_dist_right[nextNodeId] = dist_j_u;
-
-        // 4. Update the Distance Matrix for the new node
-        for (int k = 0; k < nextNodeId; ++k) {
-            if (d_active[k] && k != min_i && k != min_j) {
-                float dist_ik = d_distMatrix[min_i * totalNodes + k];
-                float dist_jk = d_distMatrix[min_j * totalNodes + k];
-                float dist_uk = 0.5f * (dist_ik + dist_jk - dist_ij);
-
-                d_distMatrix[nextNodeId * totalNodes + k] = dist_uk;
-                d_distMatrix[k * totalNodes + nextNodeId] = dist_uk;
-            }
-        }
-
-        // 5. Update Active Masks
-        d_active[min_i] = false;
-        d_active[min_j] = false;
-        d_active[nextNodeId] = true;
-
-        currentNodesCount--;
-        nextNodeId++;
+    // 2. Initialize the active mask sequentially
+    for (int i = 0; i < totalNodes; ++i) {
+        d_active[i] = (i < numSeqs);
     }
 }
 

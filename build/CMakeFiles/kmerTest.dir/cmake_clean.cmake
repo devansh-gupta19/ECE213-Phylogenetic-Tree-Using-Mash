@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/kmerTest.dir/src/memTransfer.cu.o.d"
   "CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o"
   "CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o.d"
+  "CMakeFiles/kmerTest.dir/src/newickHelper.cpp.o"
+  "CMakeFiles/kmerTest.dir/src/newickHelper.cpp.o.d"
   "CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o"
   "CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o.d"
   "kmerTest"

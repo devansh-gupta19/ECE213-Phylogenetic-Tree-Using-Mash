@@ -190,7 +190,136 @@ CMakeFiles/kmerTest.dir/src/gpuProperty.cu.o: ../src/gpuProperty.cu \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/c++/11/cstddef \
-  /usr/include/c++/11/cstdio
+  /usr/include/c++/11/cstdio \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/cctype \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h
 
 CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/include/stdc-predef.h \
@@ -382,6 +511,135 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/c++/11/cstddef \
   /usr/include/c++/11/cstdio \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/cctype \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/sort.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/version.h \
@@ -404,76 +662,7 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/iterator_traits.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/void_t.h \
   /usr/include/c++/11/iterator \
-  /usr/include/c++/11/iosfwd \
-  /usr/include/c++/11/bits/stringfwd.h \
-  /usr/include/c++/11/bits/memoryfwd.h \
-  /usr/include/c++/11/bits/postypes.h \
-  /usr/include/c++/11/cwchar \
-  /usr/include/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/c++/11/bits/stream_iterator.h \
-  /usr/include/c++/11/bits/streambuf_iterator.h \
-  /usr/include/c++/11/streambuf \
-  /usr/include/c++/11/bits/localefwd.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
-  /usr/include/c++/11/clocale \
-  /usr/include/locale.h \
-  /usr/include/x86_64-linux-gnu/bits/locale.h \
-  /usr/include/c++/11/cctype \
-  /usr/include/c++/11/bits/ios_base.h \
-  /usr/include/c++/11/ext/atomicity.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
-  /usr/include/pthread.h \
-  /usr/include/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
-  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
-  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
-  /usr/include/c++/11/bits/locale_classes.h \
-  /usr/include/c++/11/string \
-  /usr/include/c++/11/bits/char_traits.h \
-  /usr/include/c++/11/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
-  /usr/include/c++/11/ext/new_allocator.h \
-  /usr/include/c++/11/bits/ostream_insert.h \
-  /usr/include/c++/11/bits/cxxabi_forced.h \
-  /usr/include/c++/11/bits/stl_function.h \
-  /usr/include/c++/11/backward/binders.h \
-  /usr/include/c++/11/bits/range_access.h \
-  /usr/include/c++/11/bits/basic_string.h \
-  /usr/include/c++/11/ext/alloc_traits.h \
-  /usr/include/c++/11/bits/alloc_traits.h \
-  /usr/include/c++/11/bits/stl_construct.h \
-  /usr/include/c++/11/string_view \
-  /usr/include/c++/11/bits/functional_hash.h \
-  /usr/include/c++/11/bits/hash_bytes.h \
-  /usr/include/c++/11/bits/string_view.tcc \
-  /usr/include/c++/11/ext/string_conversions.h \
-  /usr/include/c++/11/cerrno \
-  /usr/include/errno.h \
-  /usr/include/x86_64-linux-gnu/bits/errno.h \
-  /usr/include/linux/errno.h \
-  /usr/include/x86_64-linux-gnu/asm/errno.h \
-  /usr/include/asm-generic/errno.h \
-  /usr/include/asm-generic/errno-base.h \
-  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
-  /usr/include/c++/11/bits/charconv.h \
-  /usr/include/c++/11/bits/basic_string.tcc \
-  /usr/include/c++/11/bits/locale_classes.tcc \
-  /usr/include/c++/11/system_error \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
-  /usr/include/c++/11/stdexcept \
-  /usr/include/c++/11/exception \
-  /usr/include/c++/11/bits/exception_ptr.h \
-  /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
-  /usr/include/c++/11/bits/nested_exception.h \
-  /usr/include/c++/11/bits/streambuf.tcc \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_traversal_tags.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/host_system_tag.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/execution_policy.h \
@@ -1155,10 +1344,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_deduction.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/preprocessor.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/remove_cvref.h \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/invoke.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/alignment.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/dependencies_aware_execution_policy.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_traits.inl \
@@ -1178,27 +1363,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/tag.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.inl \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/functional.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/bits/std_function.h \
-  /usr/include/c++/11/unordered_map \
-  /usr/include/c++/11/ext/aligned_buffer.h \
-  /usr/include/c++/11/bits/hashtable.h \
-  /usr/include/c++/11/bits/hashtable_policy.h \
-  /usr/include/c++/11/bits/enable_special_members.h \
-  /usr/include/c++/11/bits/node_handle.h \
-  /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/stl_tempbuf.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/placeholder.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/actor.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/tuple.h \
@@ -1269,20 +1433,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/error_code.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/errno.h \
   /usr/include/c++/11/iostream \
-  /usr/include/c++/11/ostream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/bits/basic_ios.h \
-  /usr/include/c++/11/bits/locale_facets.h \
-  /usr/include/c++/11/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
-  /usr/include/c++/11/bits/locale_facets.tcc \
-  /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/bits/ostream.tcc \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_category.inl \
   /usr/include/c++/11/cstring \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_code.inl \
@@ -1441,7 +1591,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/chrono \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
-  /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/common_type.h \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_floating_point.h \
@@ -1575,7 +1724,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
   /usr/include/c++/11/bits/align.h \
   /usr/include/c++/11/bit \
-  /usr/include/c++/11/bits/unique_ptr.h \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
@@ -1583,7 +1731,6 @@ CMakeFiles/kmerTest.dir/src/kmer.cu.o: ../src/kmer.cu \
   /usr/include/c++/11/bits/shared_ptr_atomic.h \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/transform.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/transform.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/transform.h \
@@ -1999,28 +2146,12 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
   /usr/include/x86_64-linux-gnu/bits/stdio2.h \
-  ../src/twoBitCompressor.hpp \
-  /usr/include/c++/11/string \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
   /usr/include/c++/11/bits/memoryfwd.h \
-  /usr/include/c++/11/bits/char_traits.h \
-  /usr/include/c++/11/bits/stl_algobase.h \
-  /usr/include/c++/11/bits/functexcept.h \
-  /usr/include/c++/11/bits/exception_defines.h \
-  /usr/include/c++/11/bits/cpp_type_traits.h \
-  /usr/include/c++/11/ext/type_traits.h \
-  /usr/include/c++/11/ext/numeric_traits.h \
-  /usr/include/c++/11/bits/stl_pair.h \
-  /usr/include/c++/11/bits/move.h \
-  /usr/include/c++/11/type_traits \
-  /usr/include/c++/11/bits/stl_iterator_base_types.h \
-  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/11/bits/concept_check.h \
-  /usr/include/c++/11/debug/assertions.h \
-  /usr/include/c++/11/bits/stl_iterator.h \
-  /usr/include/c++/11/bits/ptr_traits.h \
-  /usr/include/c++/11/debug/debug.h \
-  /usr/include/c++/11/bits/predefined_ops.h \
   /usr/include/c++/11/bits/postypes.h \
   /usr/include/c++/11/cwchar \
   /usr/include/wchar.h \
@@ -2029,28 +2160,42 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/wchar2.h \
-  /usr/include/c++/11/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
-  /usr/include/c++/11/ext/new_allocator.h \
-  /usr/include/c++/11/new \
+  /usr/include/c++/11/exception \
   /usr/include/c++/11/bits/exception.h \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/exception_defines.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/new \
+  /usr/include/c++/11/bits/move.h \
+  /usr/include/c++/11/type_traits \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/stl_algobase.h \
+  /usr/include/c++/11/bits/functexcept.h \
+  /usr/include/c++/11/bits/cpp_type_traits.h \
+  /usr/include/c++/11/ext/type_traits.h \
+  /usr/include/c++/11/ext/numeric_traits.h \
+  /usr/include/c++/11/bits/stl_pair.h \
+  /usr/include/c++/11/bits/stl_iterator_base_types.h \
+  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/11/bits/concept_check.h \
+  /usr/include/c++/11/debug/assertions.h \
+  /usr/include/c++/11/bits/stl_iterator.h \
+  /usr/include/c++/11/bits/ptr_traits.h \
+  /usr/include/c++/11/debug/debug.h \
+  /usr/include/c++/11/bits/predefined_ops.h \
   /usr/include/c++/11/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
   /usr/include/c++/11/clocale \
   /usr/include/locale.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
-  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/cctype \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
-  /usr/include/c++/11/bits/ostream_insert.h \
-  /usr/include/c++/11/bits/cxxabi_forced.h \
-  /usr/include/c++/11/bits/stl_function.h \
-  /usr/include/c++/11/backward/binders.h \
-  /usr/include/c++/11/bits/range_access.h \
-  /usr/include/c++/11/initializer_list \
-  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
@@ -2082,12 +2227,23 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/initializer_list \
+  /usr/include/c++/11/bits/basic_string.h \
   /usr/include/c++/11/ext/alloc_traits.h \
   /usr/include/c++/11/bits/alloc_traits.h \
   /usr/include/c++/11/bits/stl_construct.h \
   /usr/include/c++/11/string_view \
   /usr/include/c++/11/bits/functional_hash.h \
-  /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/string_view.tcc \
   /usr/include/c++/11/ext/string_conversions.h \
   /usr/include/c++/11/cstdlib \
@@ -2117,16 +2273,6 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
-  /usr/include/c++/11/iostream \
-  /usr/include/c++/11/ostream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/exception \
-  /usr/include/c++/11/bits/exception_ptr.h \
-  /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
-  /usr/include/c++/11/bits/nested_exception.h \
-  /usr/include/c++/11/bits/ios_base.h \
-  /usr/include/c++/11/bits/locale_classes.h \
   /usr/include/c++/11/bits/locale_classes.tcc \
   /usr/include/c++/11/system_error \
   /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
@@ -2143,9 +2289,58 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
   /usr/include/c++/11/bits/ostream.tcc \
-  /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  ../src/twoBitCompressor.hpp \
+  /usr/include/c++/11/iostream \
   /usr/include/tbb/parallel_for.h \
   /usr/include/oneapi/tbb/parallel_for.h \
   /usr/include/oneapi/tbb/detail/_config.h \
@@ -2258,35 +2453,22 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/utility \
-  /usr/include/c++/11/bits/stl_relops.h \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/invoke.h \
-  /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/bits/unique_ptr.h \
   /usr/include/c++/11/bits/this_thread_sleep.h \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
   /usr/include/c++/11/limits \
-  /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/include/c++/11/memory \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/bits/stl_tempbuf.h \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
   /usr/include/c++/11/bits/align.h \
   /usr/include/c++/11/bit \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
-  /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/ext/concurrence.h \
   /usr/include/c++/11/bits/shared_ptr_atomic.h \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h \
   /usr/include/c++/11/iterator \
   /usr/include/c++/11/bits/stream_iterator.h \
   /usr/include/oneapi/tbb/detail/_small_object_pool.h \
@@ -2304,10 +2486,6 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/oneapi/tbb/detail/_range_common.h \
   /usr/include/oneapi/tbb/cache_aligned_allocator.h \
   /usr/include/c++/11/memory_resource \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/shared_mutex \
   /usr/include/c++/11/bits/uses_allocator_args.h \
   /usr/include/oneapi/tbb/task_group.h \
@@ -2315,21 +2493,6 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/oneapi/tbb/detail/_intrusive_list_node.h \
   /usr/include/oneapi/tbb/task_arena.h \
   /usr/include/oneapi/tbb/info.h \
-  /usr/include/c++/11/algorithm \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h \
-  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/bits/std_function.h \
-  /usr/include/c++/11/unordered_map \
-  /usr/include/c++/11/bits/hashtable.h \
-  /usr/include/c++/11/bits/hashtable_policy.h \
-  /usr/include/c++/11/bits/enable_special_members.h \
-  /usr/include/c++/11/bits/node_handle.h \
-  /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/bits/erase_if.h \
   /usr/include/oneapi/tbb/blocked_range.h \
   /usr/include/oneapi/tbb/version.h \
   ../src/timer.hpp \
@@ -2792,16 +2955,6 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/boost/move/detail/std_ns_begin.hpp \
   /usr/include/boost/move/detail/std_ns_end.hpp \
   /usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp \
-  /usr/include/c++/11/locale \
-  /usr/include/c++/11/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/11/bits/locale_conv.h \
-  /usr/include/c++/11/sstream \
-  /usr/include/c++/11/bits/sstream.tcc \
   /usr/include/boost/lexical_cast/detail/lcast_char_constants.hpp \
   /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp \
   /usr/include/boost/noncopyable.hpp \
@@ -3026,7 +3179,8 @@ CMakeFiles/kmerTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/boost/program_options/version.hpp \
   /usr/include/zlib.h \
   /usr/include/zconf.h \
-  ../src/kseq.h
+  ../src/kseq.h \
+  ../src/newickHelper.hpp
 
 CMakeFiles/kmerTest.dir/src/mash.cu.o: ../src/mash.cu \
   /usr/include/stdc-predef.h \
@@ -3215,9 +3369,139 @@ CMakeFiles/kmerTest.dir/src/mash.cu.o: ../src/mash.cu \
   /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
   ../src/masterHeader.cuh \
   /usr/include/c++/11/cstddef \
-  /usr/include/c++/11/cstdio
+  /usr/include/c++/11/cstdio \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/cctype \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h
 
 CMakeFiles/kmerTest.dir/src/memTransfer.cu.o: ../src/memTransfer.cu \
   /usr/include/stdc-predef.h \
@@ -3408,7 +3692,136 @@ CMakeFiles/kmerTest.dir/src/memTransfer.cu.o: ../src/memTransfer.cu \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/c++/11/cstddef \
-  /usr/include/c++/11/cstdio
+  /usr/include/c++/11/cstdio \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/cctype \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h
 
 CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/include/stdc-predef.h \
@@ -3600,8 +4013,8 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/c++/11/cstddef \
   /usr/include/c++/11/cstdio \
-  /usr/include/c++/11/iostream \
-  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
   /usr/include/c++/11/ios \
   /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
@@ -3681,9 +4094,55 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
   /usr/include/c++/11/bits/ostream.tcc \
-  /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/iostream \
   /usr/include/c++/11/cstring \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/sort.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config.h \
@@ -4389,10 +4848,6 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_deduction.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/preprocessor.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/remove_cvref.h \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/invoke.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/alignment.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/dependencies_aware_execution_policy.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_traits.inl \
@@ -4412,27 +4867,6 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/tag.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.inl \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/functional.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/bits/std_function.h \
-  /usr/include/c++/11/unordered_map \
-  /usr/include/c++/11/ext/aligned_buffer.h \
-  /usr/include/c++/11/bits/hashtable.h \
-  /usr/include/c++/11/bits/hashtable_policy.h \
-  /usr/include/c++/11/bits/enable_special_members.h \
-  /usr/include/c++/11/bits/node_handle.h \
-  /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/stl_tempbuf.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/placeholder.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/actor.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/tuple.h \
@@ -4659,7 +5093,6 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/chrono \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
-  /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/common_type.h \
   /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_floating_point.h \
@@ -4793,7 +5226,6 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
   /usr/include/c++/11/bits/align.h \
   /usr/include/c++/11/bit \
-  /usr/include/c++/11/bits/unique_ptr.h \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
@@ -4801,7 +5233,6 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/include/c++/11/bits/shared_ptr_atomic.h \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/transform.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/transform.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/transform.h \
@@ -5174,6 +5605,241 @@ CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.o: ../src/murmur3Hash.cu \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/unique.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/unique_by_key.h \
   /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/unique_by_key.h
+
+CMakeFiles/kmerTest.dir/src/newickHelper.cpp.o: ../src/newickHelper.cpp \
+  /usr/include/stdc-predef.h \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
+  /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception.h \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/exception_defines.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/new \
+  /usr/include/c++/11/bits/move.h \
+  /usr/include/c++/11/type_traits \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/stl_algobase.h \
+  /usr/include/c++/11/bits/functexcept.h \
+  /usr/include/c++/11/bits/cpp_type_traits.h \
+  /usr/include/c++/11/ext/type_traits.h \
+  /usr/include/c++/11/ext/numeric_traits.h \
+  /usr/include/c++/11/bits/stl_pair.h \
+  /usr/include/c++/11/bits/stl_iterator_base_types.h \
+  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/11/bits/concept_check.h \
+  /usr/include/c++/11/debug/assertions.h \
+  /usr/include/c++/11/bits/stl_iterator.h \
+  /usr/include/c++/11/bits/ptr_traits.h \
+  /usr/include/c++/11/debug/debug.h \
+  /usr/include/c++/11/bits/predefined_ops.h \
+  /usr/include/c++/11/cstdint \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/cctype \
+  /usr/include/ctype.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/initializer_list \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cstdlib \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/c++/11/bits/std_abs.h \
+  /usr/include/c++/11/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  ../src/newickHelper.hpp
 
 CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp \
   /usr/include/stdc-predef.h \
@@ -5767,16 +6433,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/boost/noncopyable.hpp:
 
-/usr/include/c++/11/bits/locale_facets_nonio.tcc:
-
-/usr/include/c++/11/bits/codecvt.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
-
-/usr/include/c++/11/bits/locale_facets_nonio.h:
-
-/usr/include/c++/11/locale:
-
 /usr/include/boost/move/detail/std_ns_end.hpp:
 
 /usr/include/boost/swap.hpp:
@@ -6323,12 +6979,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/oneapi/tbb/version.h:
 
-/usr/include/boost/mpl/aux_/msvc_never_true.hpp:
-
-/usr/include/c++/11/pstl/glue_algorithm_defs.h:
-
-/usr/include/c++/11/algorithm:
-
 /usr/include/boost/mpl/aux_/numeric_op.hpp:
 
 /usr/include/oneapi/tbb/info.h:
@@ -6533,10 +7183,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/unique_by_key.h:
 
-/usr/include/boost/type_traits/is_floating_point.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/range/head_flags.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/count.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/count.h:
@@ -6631,65 +7277,31 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/binary_search.inl:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_move_constructible.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/binary_search.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_traits.inl:
+/usr/local/cuda/targets/x86_64-linux/include/cub/thread/thread_sort.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/scan.inl:
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_merge_sort.cuh:
 
-/usr/include/c++/11/bits/invoke.h:
+/usr/include/boost/lexical_cast/try_lexical_convert.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/cpp11_required.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/device_merge_sort.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/totally_ordered.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_sort.cuh:
 
-/usr/include/time.h:
+/usr/include/boost/function/detail/function_iterate.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/invocable.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_upsweep.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/can_extract_key.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_onesweep.cuh:
 
-/usr/include/boost/mpl/aux_/config/bcc.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/tuple:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:
+/usr/local/cuda/targets/x86_64-linux/include/cub/block/radix_rank_sort_operations.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/equality_comparable.h:
+/usr/include/boost/mpl/long_fwd.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/sm_20_atomic_functions.h:
-
-/usr/include/boost/numeric/conversion/detail/int_float_mixture.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/copyable.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/sort.inl:
-
-/usr/include/boost/mpl/aux_/msvc_eti_base.hpp:
-
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/convertible_to.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/back_insert_iterator.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/common_reference_with.h:
-
-/usr/include/c++/11/ext/new_allocator.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/__concept_macros.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/insertion_sort.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/unreachable.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/to_underlying.h:
-
-/usr/include/boost/mpl/aux_/config/typeof.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/forward_like.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/sequence.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/maybe_const.h:
 
@@ -6698,8 +7310,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/amxtileintrin.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/extrema.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/make_32_64_or_128_bit.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_unsigned_integer.h:
 
@@ -6717,25 +7327,17 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_primary_template.h:
 
-/usr/include/boost/preprocessor/punctuation/comma.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_radix_sort.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/_One_of.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_destructible.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/__concept_macros.h:
 
 /usr/include/c++/11/bits/atomic_base.h:
 
 /usr/include/boost/mpl/list/aux_/item.hpp:
 
 /usr/include/c++/11/ext/concurrence.h:
-
-/usr/include/boost/range/size.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__memory/voidify.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_polymorphic.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/transform.h:
 
 /usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_atomic.hpp:
 
@@ -6765,10 +7367,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/select_system.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_const_ref.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/aligned_union.h:
-
 /usr/include/boost/preprocessor/tuple/rem.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/aligned_storage.h:
@@ -6776,12 +7374,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/boost/mpl/not_equal_to.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_scan.cuh:
-
-/usr/include/boost/range/detail/misc_concept.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
-
-/usr/include/stdc-predef.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/limits:
 
@@ -6809,11 +7401,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/reverse.h:
 
-/usr/include/c++/11/bits/ios_base.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/convertible_to.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/rel_ops.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/__pragma_pop:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/back_insert_iterator.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__cuda/cstdint_prelude.h:
 
@@ -6833,21 +7423,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_nothrow_move_assignable.h:
 
-/usr/include/boost/type_traits/enable_if.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_move_assignable.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/copy_cvref.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/size.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/apply_cv.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/convert_to_integral.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/distance.inl:
-
-/usr/include/c++/11/exception:
 
 /usr/include/boost/numeric/conversion/sign_mixture_enum.hpp:
 
@@ -6897,13 +7475,19 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__fwd/pair.h:
 
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_null_pointer.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/move.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_copy_assignable.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/can_extract_key.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/relation.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/invocable.h:
+
+/usr/include/boost/mpl/aux_/config/bcc.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
@@ -6923,14 +7507,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_floating_point.h:
 
-/usr/include/c++/11/bits/streambuf_iterator.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_enum.h:
-
-/usr/include/boost/mpl/multiplies.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/vector_functions.hpp:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_unsigned.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/extrema.h:
@@ -6948,12 +7524,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_pointer.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_member_function_pointer.h:
-
-/usr/include/boost/predef/os/bsd/open.h:
-
-/usr/include/boost/type_traits/add_volatile.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_core_convertible.h:
 
 /usr/include/boost/predef/detail/test.h:
 
@@ -7001,14 +7571,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/scatter.inl:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h:
-
-/usr/include/oneapi/tbb/detail/_machine.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/hash.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/util_ptx.cuh:
-
 /usr/include/boost/mpl/advance.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__memory/addressof.h:
@@ -7045,8 +7607,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/logical_metafunctions.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/regular.h:
-
 /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/utility:
@@ -7056,10 +7616,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/oneapi/tbb/detail/_config.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/tuple_of_iterator_references.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/execute_with_dependencies.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/make_const_lvalue_ref.h:
 
 /usr/include/boost/preprocessor/control/iif.hpp:
 
@@ -7081,6 +7637,8 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/ext/alloc_traits.h:
 
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/scan.inl:
+
 /usr/include/boost/preprocessor/arithmetic/add.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/nv/target:
@@ -7094,14 +7652,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/sm_20_intrinsics.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/util_arch.cuh:
-
-/usr/include/boost/predef/os/bsd/bsdi.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/alignment.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_nothrow_constructible.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/__config:
 
 /usr/include/c++/11/chrono:
 
@@ -7119,109 +7669,217 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/bits/range_access.h:
 
+/usr/include/boost/math/tools/config.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/global_workarounds.h:
+
+/usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/forceinline.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/boost/mpl/limits/list.hpp:
+
+/usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/c++/11/bits/char_traits.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/device_system.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_merge_sort.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_cvref.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/is_contiguous_iterator.h:
+
+/usr/include/boost/predef/os/bsd/open.h:
+
+/usr/include/boost/type_traits/add_volatile.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_core_convertible.h:
+
+/usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/boost/mpl/aux_/traits_lambda_spec.hpp:
+
+/usr/include/c++/11/vector:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/make_32_64_or_128_bit.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/add_rvalue_reference.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/equal.inl:
+
+/usr/include/c++/11/unordered_map:
+
+/usr/include/boost/mpl/aux_/contains_impl.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/advance.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/reverse.h:
+
+/usr/include/c++/11/bits/std_function.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/void_t.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/incrementable_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/aligned_union.h:
+
+/usr/include/c++/11/algorithm:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/boost/mpl/reverse_fold.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/remove.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_union.h:
+
 /usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/thread/thread_scan.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/lazy.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/sort.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/identity.h:
+/usr/include/c++/11/tuple:
 
-/usr/include/boost/checked_delete.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/crt/math_functions.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/host_system_tag.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/copy.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/unreachable.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h:
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/forward.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/assign_value.h:
 
-/usr/include/math.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/config.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/mpl/math.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/c++/11/bits/basic_ios.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda_runtime_api.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/detail/cpp_compatibility.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/reverse.h:
+
+/usr/include/boost/mpl/aux_/config/msvc.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/fill.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h:
+
+/usr/include/oneapi/tbb/detail/_machine.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/hash.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/util_ptx.cuh:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/reverse_iterator.h:
+
+/usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_enum.h:
+
+/usr/include/boost/mpl/multiplies.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/vector_functions.hpp:
+
+/usr/include/boost/utility/binary.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config.h:
+
+../src/kmer.cu:
+
+/usr/include/boost/type_traits/is_floating_point.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/range/head_flags.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/boost/type_traits/enable_if.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_move_assignable.h:
+
+/usr/include/boost/mpl/clear.hpp:
+
+/usr/include/c++/11/ostream:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/minimum_system.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/uninitialized_fill.h:
+
+/usr/include/boost/range/detail/misc_concept.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/oneapi/tbb/detail/_exception.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/version.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_const_ref.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/cpp_dialect.h:
+
+../src/newickHelper.cpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/debug.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_copy_assignable.h:
+
+/usr/include/c++/11/cwctype:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/structured_bindings.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/vector_types.h:
+
+/usr/include/boost/type_traits/is_member_function_pointer.hpp:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
+/usr/include/c++/11/streambuf:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/transform.h:
+
+/usr/include/boost/mpl/aux_/msvc_never_true.hpp:
+
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/transform_iterator.h:
 
 /usr/include/c++/11/stdexcept:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/features-time64.h:
-
-/usr/include/boost/mpl/vector/vector20.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_primitive_sort.h:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2intrin.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_element.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/generate.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/xmmintrin.h:
-
-/usr/include/oneapi/tbb/detail/_namespace_injection.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/disjunction.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/result_of_adaptable_function.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/is_transparent.h:
-
-/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/partition.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
-
-/usr/include/c++/11/bits/alloc_traits.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/empty.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/util_macro.cuh:
-
-/usr/include/boost/preprocessor/seq/detail/is_empty.hpp:
-
-/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
-
-/usr/include/c++/11/ext/string_conversions.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/sort.h:
-
-/usr/include/boost/function/detail/prologue.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/allocator_traits.inl:
-
-/usr/include/c++/11/bits/string_view.tcc:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/unwrap_ref.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/cstdlib:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:
-
-/usr/include/c++/11/bits/functional_hash.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/merge.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/reverse_access.h:
-
-/usr/include/boost/mpl/aux_/find_if_pred.hpp:
-
-/usr/include/c++/11/bits/stl_construct.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/binary_search.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/binary_search.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/adjacent_difference.h:
 
 /usr/include/boost/numeric/conversion/bounds.hpp:
 
@@ -7231,27 +7889,37 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/block/block_reduce.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/boolean_testable.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/make_tuple_types.h:
 
 /usr/include/boost/preprocessor/array/elem.hpp:
 
 /usr/include/c++/11/bits/stl_pair.h:
 
-/usr/include/boost/mpl/same_as.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_move_constructible.h:
 
-/usr/include/c++/11/bits/sstream.tcc:
+/usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:
 
-/usr/include/boost/mpl/limits/arity.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/execution_policy.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/movable.h:
+/usr/include/boost/preprocessor/seq/detail/is_empty.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/tuple.h:
+/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
 
-/usr/include/boost/lexical_cast/try_lexical_convert.hpp:
+/usr/include/c++/11/ext/string_conversions.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/device_merge_sort.cuh:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/sort.h:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/c++/11/bits/unordered_map.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/host_system.h:
+
+/usr/include/boost/type_traits/has_plus_assign.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/unary_negate.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_nothrow_copy_constructible.h:
 
@@ -7259,9 +7927,15 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/stdlib.h:
 
+/usr/include/c++/11/bits/quoted_string.h:
+
 /usr/include/boost/type_index/type_index_facade.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/reduce_by_key.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/binary_search.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__fwd/get.h:
 
@@ -7275,6 +7949,16 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/crt/sm_80_rt.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/forward.h:
+
+/usr/include/math.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/mpl/math.h:
+
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda_runtime.h:
@@ -7283,17 +7967,7 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/sm_60_atomic_functions.h:
 
-/usr/include/boost/smart_ptr/detail/operator_bool.hpp:
-
-/usr/include/c++/11/cerrno:
-
 /usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-/usr/include/boost/config/no_tr1/complex.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_condition.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/system_error.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -7319,14 +7993,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/sm_61_intrinsics.hpp:
 
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_deduction.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_like.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/fxsrintrin.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/host_vector.h:
@@ -7339,6 +8005,18 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/climits:
 
+/usr/include/boost/mpl/same_as.hpp:
+
+/usr/include/boost/mpl/limits/arity.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/movable.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/tuple.h:
+
+/usr/include/c++/11/bits/sstream.tcc:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__cuda/chrono.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bwintrin.h:
 
 /usr/include/c++/11/new:
@@ -7349,19 +8027,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/uninitialized_fill.inl:
 
-/usr/include/c++/11/bits/algorithmfwd.h:
+/usr/include/c++/11/bits/locale_facets.h:
 
-/usr/include/c++/11/bits/basic_string.tcc:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/scan.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/reverse_iterator_base.h:
-
-/usr/include/c++/11/bits/charconv.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/crt/cudacc_ext.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_reference_wrapper.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_unique_by_key.cuh:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/assignment_operator.h:
 
@@ -7371,13 +8039,19 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/sort.inl:
+
+/usr/include/boost/numeric/conversion/detail/int_float_mixture.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/copyable.h:
+
+/usr/include/boost/mpl/aux_/msvc_eti_base.hpp:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__fwd/tuple.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/boost/type_traits/has_plus_assign.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/unary_negate.h:
 
 /usr/include/boost/mpl/push_back_fwd.hpp:
 
@@ -7399,31 +8073,11 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/version:
 
-/usr/include/c++/11/bits/exception_ptr.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_copy_constructible.h:
-
-/usr/include/c++/11/bits/stl_function.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/terminate.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_types.h:
-
-/usr/include/boost/mpl/front_inserter.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/destructible.h:
-
-/usr/include/boost/mpl/list/aux_/size.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/execution_policy.h:
-
-/usr/include/oneapi/tbb/detail/_exception.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/compound_assignment_operators.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sequence.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/insertion_sort.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/vector_functions.h:
 
@@ -7433,25 +8087,29 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/alloca.h:
 
-/usr/include/boost/mpl/if.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/as_const.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/concepts:
+/usr/include/boost/preprocessor/arithmetic/mod.hpp:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/float.h:
+/usr/include/c++/11/functional:
 
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+/usr/include/c++/11/ext/new_allocator.h:
 
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/common_reference_with.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/boost/preprocessor/punctuation/comma.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/_One_of.h:
+
+/usr/include/time.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/totally_ordered.h:
 
 /usr/include/boost/mpl/aux_/lambda_spec.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/dependencies_aware_execution_policy.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/transform_reduce.inl:
 
 /usr/include/boost/range/reverse_iterator.hpp:
 
@@ -7462,16 +8120,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/boost/throw_exception.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_cvref.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/is_contiguous_iterator.h:
-
-/usr/include/boost/mpl/reverse_fold.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_union.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/remove.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/device_types.h:
 
@@ -7503,25 +8151,19 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/grid/grid_queue.cuh:
 
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/exec_check_disable.h:
+
+/usr/include/c++/11/bits/unique_ptr.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_raking_layout.cuh:
+
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/logical_operators.h:
 
 /usr/include/boost/mpl/aux_/value_wknd.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/tabulate.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/in_place.h:
-
 /usr/include/c++/11/bits/functexcept.h:
-
-/usr/include/c++/11/streambuf:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/transform.h:
-
-/usr/include/boost/mpl/pop_front_fwd.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/class_or_enum.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
@@ -7545,7 +8187,29 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
+/usr/include/boost/mpl/size_fwd.hpp:
+
+/usr/include/c++/11/bits/ostream.tcc:
+
+/usr/include/c++/11/tr1/modified_bessel_func.tcc:
+
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/simple_defines.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/raw_pointer_cast.h:
+
+/usr/include/c++/11/bits/specfun.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/boost/mpl/vector/aux_/push_back.hpp:
+
+/usr/include/boost/mpl/next.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/utility:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_standard_layout.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/unwrap_ref.h:
 
 /usr/include/boost/preprocessor/iteration/detail/bounds/lower1.hpp:
 
@@ -7565,13 +8229,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/bits/stl_relops.h:
 
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/boolean_testable.h:
+
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/has_trivial_assign.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/constructible.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_reduce_by_key.cuh:
 
 /usr/include/boost/mpl/O1_size.hpp:
 
@@ -7589,23 +8249,31 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/tr1/special_function_util.h:
 
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/copy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/ostreambuf_iterator.h:
+
 ../src/gpuProperty.cu:
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/boost/mpl/vector/vector20.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_primitive_sort.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/stdlib.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/crt/math_functions.hpp:
-
-/usr/include/c++/11/tuple:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/copy.h:
-
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/core/agent_launcher.h:
+
+/usr/include/c++/11/bits/ios_base.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_move_constructible.h:
 
@@ -7614,6 +8282,8 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/boost/mpl/aux_/has_tag.hpp:
 
 /usr/include/c++/11/iostream:
+
+/usr/include/c++/11/locale:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_nothrow_convertible.h:
 
@@ -7627,19 +8297,21 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/pthread.h:
 
-/usr/include/boost/lexical_cast.hpp:
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/assignable.h:
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
-/usr/include/boost/mpl/list/aux_/begin_end.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_polymorphic.h:
 
-/usr/include/c++/11/cstdlib:
+/usr/include/boost/range/size.hpp:
 
-/usr/include/c++/11/string_view:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__memory/voidify.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/guarded_cuda_runtime_api.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/transform.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_radix_sort.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_merge_sort.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/driver_functions.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/crt/host_config.h:
 
@@ -7653,23 +8325,7 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_category_with_system_and_traversal.h:
 
-/usr/include/boost/mpl/vector/aux_/iterator.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/different_from.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/device_system.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_merge_sort.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/incrementable_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/type_traits/void_t.h:
-
-/usr/include/c++/11/bits/std_function.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/relation.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/underlying_type.h:
 
@@ -7684,6 +8340,18 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_final.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/promote.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/piecewise_construct.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/transform_reduce.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -7723,22 +8391,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
-/usr/include/boost/mpl/distance_fwd.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__pragma_pop:
-
-/usr/include/boost/mpl/aux_/msvc_type.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_reference.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/merge.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/arithmetic.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/binary_search.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
-
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
 
 /usr/include/c++/11/ext/numeric_traits.h:
@@ -7746,10 +8398,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/cub/util_namespace.cuh:
 
 /usr/include/features.h:
-
-/usr/include/boost/mpl/long_fwd.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/sequence.h:
 
 ../src/murmur3Hash.cu:
 
@@ -7801,10 +8449,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/universal_categories.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/version:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_assignable.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/builtin_types.h:
@@ -7821,9 +8465,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_bounded_array.h:
+/usr/include/linux/errno.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/iterator_traits.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
@@ -7839,17 +8483,27 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2intrin.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_element.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/generate.h:
+
+/usr/include/boost/mpl/bool.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/execution_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/merge.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/texture_types.h:
+
 /usr/include/boost/mpl/aux_/numeric_cast_utils.hpp:
 
 /usr/include/c++/11/bits/exception_defines.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/block/block_scan.cuh:
-
-/usr/include/boost/range/const_iterator.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/derived_from.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/counting_iterator.h:
 
 /usr/include/boost/mpl/list/aux_/front.hpp:
 
@@ -7865,23 +8519,43 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/generate.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/predicate.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/apply_cv.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/surface_types.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/common_with.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/binary_search.inl:
 
-/usr/include/c++/11/bits/locale_classes.tcc:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/binary_search.h:
 
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/scalar/binary_search.inl:
+/usr/include/boost/mpl/aux_/find_if_pred.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_member_object_pointer.h:
+/usr/include/c++/11/bits/stl_construct.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/library_types.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/adjacent_difference.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_radix_sort.h:
+
+/usr/include/boost/mpl/list/aux_/begin_end.hpp:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/c++/11/string_view:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/guarded_cuda_runtime_api.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/device_radix_sort.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_const.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/cpp_compatibility.h:
+
+/usr/include/boost/mpl/integral_c.hpp:
+
+/usr/include/c++/11/pstl/pstl_config.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/util_cpp_dialect.cuh:
 
@@ -7902,8 +8576,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/execute_with_allocator_fwd.h:
 
 /usr/include/c++/11/cmath:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/execution_policy.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/channel_descriptor.h:
 
@@ -7931,23 +8603,19 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/composite.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/config.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/common_with.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/memory.inl:
+/usr/include/boost/type_traits/add_pointer.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/exchange.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/namespace.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh:
+/usr/include/locale.h:
 
 /usr/include/boost/type_traits/is_class.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/sm_30_intrinsics.hpp:
 
 /usr/include/c++/11/debug/assertions.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/same_as.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__assert:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_volatile.h:
 
@@ -7963,7 +8631,9 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/find.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/add_rvalue_reference.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_adaptor_base.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_integral.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -7974,8 +8644,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/add_lvalue_reference.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/sm_20_atomic_functions.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/sort.h:
 
 /usr/include/c++/11/limits:
 
@@ -8001,6 +8669,12 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/swap_ranges.h:
 
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/boost/mpl/aux_/config/typeof.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/forward_like.h:
+
 /usr/include/c++/11/tr1/gamma.tcc:
 
 /usr/include/c++/11/bits/locale_classes.h:
@@ -8024,6 +8698,26 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/c++/11/tr1/ell_integral.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+/usr/include/c++/11/bits/exception_ptr.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_copy_constructible.h:
+
+/usr/include/c++/11/bits/stl_function.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/terminate.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_types.h:
+
+/usr/include/boost/mpl/front_inserter.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/destructible.h:
+
+/usr/include/boost/mpl/list/aux_/size.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/execution_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/compound_assignment_operators.h:
 
 /usr/include/boost/mpl/limits/vector.hpp:
 
@@ -8065,35 +8759,13 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/device_atomic_functions.h:
 
-/usr/include/c++/11/bits/hash_bytes.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/fill.h:
-
-/usr/include/boost/mpl/aux_/fold_impl.hpp:
-
-/usr/include/c++/11/bits/move.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/warp/specializations/warp_reduce_shfl.cuh:
-
-/usr/include/boost/mpl/greater.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/device_atomic_functions.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/execution_policy.h:
-
-/usr/include/c++/11/bits/hashtable_policy.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional.inl:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_extent.h:
 
-/usr/include/boost/mpl/iter_fold.hpp:
+/usr/local/cuda/targets/x86_64-linux/include/sm_20_atomic_functions.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cub/detail/detect_cuda_runtime.cuh:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/equality_comparable.h:
 
-/usr/include/boost/mpl/logical.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/config.cuh:
+/usr/include/c++/11/istream:
 
 /usr/local/cuda/targets/x86_64-linux/include/sm_32_atomic_functions.hpp:
 
@@ -8109,25 +8781,35 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/boost/predef/architecture/x86/64.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/merge.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/common_reference.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/merge.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/reduce_by_key.h:
 
+/usr/include/c++/11/bits/refwrap.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/sm_32_atomic_functions.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/crt/sm_80_rt.hpp:
+
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__cuda/climits_prelude.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/texture_types.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/debug.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/cpp_dialect.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/preprocessor.h:
-
 /usr/include/c++/11/utility:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/empty.h:
+
+/usr/include/boost/checked_delete.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/host_system_tag.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/iterator_traits.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_bounded_array.h:
 
 /usr/include/c++/11/iosfwd:
 
@@ -8151,14 +8833,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/cstdint:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda_runtime_api.h:
-
-/usr/include/c++/11/bits/basic_ios.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/detail/cpp_compatibility.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/reverse.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/thrust/swap.h:
 
 /usr/include/c++/11/cstddef:
@@ -8169,139 +8843,119 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/wrap_iter.h:
 
-/usr/include/c++/11/cstdio:
-
-../src/kmer.cu:
-
-/usr/include/boost/utility/binary.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_final.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/promote.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/piecewise_construct.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/transform_reduce.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
-
-/usr/include/boost/mpl/vector/aux_/push_back.hpp:
-
-/usr/include/boost/mpl/next.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_standard_layout.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/utility:
-
-/usr/include/c++/11/bits/specfun.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/raw_pointer_cast.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/as_const.h:
-
-/usr/include/boost/preprocessor/arithmetic/mod.hpp:
-
-/usr/include/c++/11/functional:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/forceinline.h:
-
-/usr/include/boost/mpl/limits/list.hpp:
-
-/usr/include/c++/11/bits/concept_check.h:
-
-/usr/include/c++/11/bits/char_traits.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_select_if.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/type_identity.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/device_radix_sort.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_const.h:
-
-/usr/include/boost/mpl/integral_c.hpp:
-
-/usr/include/c++/11/pstl/pstl_config.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/cpp_compatibility.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/structured_bindings.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/vector_types.h:
-
-/usr/include/c++/11/cwctype:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/exec_check_disable.h:
-
-/usr/include/boost/math/tools/config.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/global_workarounds.h:
-
-/usr/include/locale.h:
-
-/usr/include/boost/type_traits/add_pointer.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/namespace.h:
-
-/usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/execution_policy.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/access.h:
+/usr/include/c++/11/iterator:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/actor.inl:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/c++/11/iterator:
+/usr/include/c++/11/cstdio:
+
+/usr/include/c++/11/fstream:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/scalar/binary_search.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_member_object_pointer.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/library_types.h:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
+
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/replace.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator_aware_execution_policy.h:
+/usr/local/cuda/targets/x86_64-linux/include/cub/util_macro.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/tuple_meta_transform.h:
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__assert:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/same_as.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_reference_wrapper.h:
+
+/usr/include/boost/mpl/aux_/fold_impl.hpp:
+
+/usr/include/c++/11/bits/move.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/warp/specializations/warp_reduce_shfl.cuh:
+
+/usr/include/boost/mpl/greater.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/device_atomic_functions.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/execution_policy.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional.inl:
+
+/usr/include/c++/11/bits/hash_bytes.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/fill.h:
+
+/usr/include/c++/11/bits/string_view.tcc:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/lazy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/identity.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xmmintrin.h:
+
+/usr/include/oneapi/tbb/detail/_namespace_injection.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/disjunction.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/result_of_adaptable_function.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/dependencies_aware_execution_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/transform_reduce.inl:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/is_transparent.h:
+
+/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/partition.h:
+
+/usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/clocale:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/block/block_merge_sort.cuh:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
-/usr/local/cuda-12.3/targets/x86_64-linux/include/nv/detail/__preprocessor:
+/usr/include/boost/container/detail/std_fwd.hpp:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits.h:
+/usr/include/wctype.h:
 
-/usr/include/c++/11/tr1/poly_hermite.tcc:
-
-/usr/include/c++/11/bits/memoryfwd.h:
-
-/usr/include/boost/mpl/negate.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy_if.inl:
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_code.inl:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
+/usr/include/c++/11/bits/stl_bvector.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/copy_cv.h:
+
+/usr/include/c++/11/tr1/poly_hermite.tcc:
+
+/usr/include/c++/11/bits/memoryfwd.h:
+
+/usr/local/cuda-12.3/targets/x86_64-linux/include/nv/detail/__preprocessor:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits.h:
+
+/usr/include/boost/mpl/negate.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy_if.inl:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_copyable.h:
 
@@ -8315,6 +8969,164 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/sort.h:
 
+/usr/include/c++/11/bits/functional_hash.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/merge.h:
+
+/usr/include/boost/smart_ptr/detail/operator_bool.hpp:
+
+/usr/include/c++/11/cerrno:
+
+/usr/include/c++/11/bits/charconv.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/crt/cudacc_ext.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/c++/11/bits/basic_string.tcc:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/scan.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/reverse_iterator_base.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/regular.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/memory.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/exchange.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_reduce_by_key.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/in_place.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/execution_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/to_underlying.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/cstdlib:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/access.h:
+
+/usr/include/boost/mpl/if.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/concepts:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/float.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/arithmetic.h:
+
+/usr/include/boost/lexical_cast.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/assignable.h:
+
+/usr/include/boost/mpl/pop_front_fwd.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/class_or_enum.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/constructible.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_reduce_by_key.cuh:
+
+/usr/include/boost/range/const_iterator.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/counting_iterator.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/derived_from.h:
+
+/usr/include/boost/mpl/vector/aux_/iterator.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/different_from.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/predicate.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/semiregular.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/reverse_access.h:
+
+/usr/include/boost/function/detail/prologue.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/allocator_traits.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/rel_ops.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/__pragma_pop:
+
+/usr/include/c++/11/exception:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/apply_cv.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__utility/convert_to_integral.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/distance.inl:
+
+/usr/include/boost/mpl/distance_fwd.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__pragma_pop:
+
+/usr/include/boost/mpl/aux_/msvc_type.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/remove_reference.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/merge.h:
+
+/usr/include/boost/mpl/iter_fold.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/detail/detect_cuda_runtime.cuh:
+
+/usr/include/boost/mpl/logical.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/config.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator_aware_execution_policy.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/tuple_meta_transform.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/has_trivial_assign.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/make_const_lvalue_ref.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/execute_with_dependencies.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/cpp11_required.h:
+
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__tuple_dir/tuple_like.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_deduction.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/preprocessor.h:
+
+/usr/include/boost/predef/os/bsd/bsdi.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_nothrow_constructible.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/__config:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/alignment.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/version:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/universal_categories.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_traits.inl:
+
+/usr/include/boost/config/no_tr1/complex.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/system_error.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_condition.inl:
+
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/type_identity.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_select_if.cuh:
+
 /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/iter_swap.h:
@@ -8327,23 +9139,19 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_category_to_system.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/minimum_system.h:
-
-/usr/include/boost/mpl/clear.hpp:
-
-/usr/include/c++/11/ostream:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/uninitialized_fill.h:
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/malloc_and_free.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/void_t.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/malloc_and_free.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/is_metafunction_defined.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/for_each.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_downsweep.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/minimum_type.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.h:
 
@@ -8356,60 +9164,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/sm_32_atomic_functions.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/crt/sm_80_rt.hpp:
-
-/usr/include/c++/11/bits/refwrap.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/equal.inl:
-
-/usr/include/c++/11/unordered_map:
-
-/usr/include/boost/mpl/aux_/contains_impl.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/advance.inl:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/reverse.h:
-
-/usr/include/boost/mpl/bool.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/execution_policy.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/merge.inl:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/c++/11/bits/node_handle.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config/host_system.h:
-
-/usr/include/c++/11/bits/unordered_map.h:
-
-/usr/include/boost/mpl/aux_/traits_lambda_spec.hpp:
-
-/usr/include/c++/11/vector:
-
-/usr/include/c++/11/bits/stl_bvector.h:
-
-/usr/include/c++/11/bits/vector.tcc:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_integral.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/iterator_adaptor_base.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/semiregular.h:
-
-/usr/include/c++/11/bits/stl_heap.h:
-
-/usr/include/c++/11/bits/stl_tempbuf.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:
-
-/usr/include/boost/type_traits/is_member_function_pointer.hpp:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/core/util.h:
 
@@ -8464,10 +9218,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/seq.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/arithmetic_operators.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/driver_functions.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_merge_sort.cuh:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/functional/operators/relational_operators.h:
 
@@ -8544,36 +9294,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/binder1st.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/dispatch.h:
-
-/usr/include/c++/11/bits/locale_facets.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_unique_by_key.cuh:
-
-/usr/include/boost/container/detail/std_fwd.hpp:
-
-/usr/include/wctype.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/version.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/ostreambuf_iterator.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/copy.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/boost/mpl/size_fwd.hpp:
-
-/usr/include/c++/11/tr1/modified_bessel_func.tcc:
-
-/usr/include/c++/11/bits/ostream.tcc:
-
-/usr/include/c++/11/istream:
-
-/usr/include/c++/11/clocale:
-
-/usr/include/c++/11/bits/istream.tcc:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/error_category.inl:
 
@@ -8707,10 +9427,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/block/specializations/block_scan_raking.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_raking_layout.cuh:
-
-/usr/include/c++/11/bits/unique_ptr.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/thread/thread_reduce.cuh:
@@ -8722,6 +9438,14 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/include/boost/integer_traits.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/tuple:
+
+/usr/include/c++/11/ctime:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/warp/warp_reduce.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/par.h:
+
+/usr/include/c++/11/iomanip:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -8745,12 +9469,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/chrono:
 
-/usr/local/cuda/targets/x86_64-linux/include/cub/warp/warp_reduce.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/par.h:
-
-/usr/include/c++/11/ctime:
-
 /usr/include/c++/11/bits/parse_numbers.h:
 
 /usr/include/boost/math/tools/user.hpp:
@@ -8766,8 +9484,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/copy_if.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/ratio:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__cuda/chrono.h:
 
 /usr/include/boost/mpl/bind_fwd.hpp:
 
@@ -8805,11 +9521,11 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/uintrintrin.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/for_each.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/tagged_allocator.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/minimum_category.h:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/for_each.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__iterator/istream_iterator.h:
 
@@ -8941,8 +9657,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/c++/11/pstl/glue_memory_defs.h:
 
-/usr/include/c++/11/pstl/execution_defs.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/sm_32_intrinsics.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/transform.h:
@@ -9061,6 +9775,14 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/malloc_and_free.h:
 
+/usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
+
+/usr/include/boost/iterator/iterator_traits.hpp:
+
+/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_rank.cuh:
+
+/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/malloc_and_free.h:
+
 /usr/include/boost/predef/architecture/x86.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/bad_alloc.h:
@@ -9074,10 +9796,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/get_value.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/get_value.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/block/radix_rank_sort_operations.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/assign_value.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/select_system.inl:
 
@@ -9159,15 +9877,11 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/swappable.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_reference.h:
 
+/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__concepts/swappable.h:
+
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/generate.h:
-
-/usr/include/boost/mpl/aux_/config/msvc.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/fill.h:
 
 /usr/include/boost/mpl/bool_fwd.hpp:
 
@@ -9190,6 +9904,8 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/fill_construct_range.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_empty.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/fill_construct_range.inl:
 
@@ -9281,17 +9997,17 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/grid/grid_mapping.cuh:
 
-/usr/local/cuda/targets/x86_64-linux/include/thrust/binary_search.h:
-
 /usr/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/device_allocator.h:
 
-/usr/include/stdint.h:
-
 /usr/local/cuda/targets/x86_64-linux/include/cub/iterator/cache_modified_input_iterator.cuh:
 
+/usr/include/stdint.h:
+
 /usr/local/cuda/targets/x86_64-linux/include/cub/iterator/arg_index_input_iterator.cuh:
+
+../src/newickHelper.hpp:
 
 /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_reduce_by_key.cuh:
 
@@ -9300,8 +10016,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/reduce_by_key.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/reduce_by_key.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/transform_iterator.h:
 
 /usr/include/c++/11/cstring:
 
@@ -9324,8 +10038,6 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__functional/not_fn.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/extrema.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/reverse_iterator.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/iterator/detail/reverse_iterator.inl:
 
@@ -9448,33 +10160,3 @@ CMakeFiles/kmerTest.dir/src/twoBitCompressor.cpp.o: ../src/twoBitCompressor.cpp 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/tabulate.h:
 
 /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/sequence.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/__type_traits/is_trivially_destructible.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_radix_sort.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/type_traits/minimum_type.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_downsweep.cuh:
-
-/usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
-
-/usr/include/boost/iterator/iterator_traits.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/malloc_and_free.h:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_rank.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cuda/std/tuple:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_onesweep.cuh:
-
-/usr/include/boost/function/detail/function_iterate.hpp:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_upsweep.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_sort.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_merge_sort.cuh:
-
-/usr/local/cuda/targets/x86_64-linux/include/cub/thread/thread_sort.cuh:

@@ -1,6 +1,11 @@
 #include <cstdint>
 #include <cstddef>
 #include <cstdio>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
+
 
 // C++ compilers don't understand __global__, so we hide it if not using NVCC
 #ifndef __CUDACC__
@@ -73,3 +78,4 @@ struct GpuAligner {
 };
 
 void printGpuProperties();
+

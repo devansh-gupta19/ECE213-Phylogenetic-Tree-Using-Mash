@@ -273,6 +273,30 @@ src/murmur3Hash.cu.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/murmur3Hash.cu.s
 .PHONY : src/murmur3Hash.cu.s
 
+src/newickHelper.o: src/newickHelper.cpp.o
+.PHONY : src/newickHelper.o
+
+# target to build an object file
+src/newickHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/newickHelper.cpp.o
+.PHONY : src/newickHelper.cpp.o
+
+src/newickHelper.i: src/newickHelper.cpp.i
+.PHONY : src/newickHelper.i
+
+# target to preprocess a source file
+src/newickHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/newickHelper.cpp.i
+.PHONY : src/newickHelper.cpp.i
+
+src/newickHelper.s: src/newickHelper.cpp.s
+.PHONY : src/newickHelper.s
+
+# target to generate assembly for a file
+src/newickHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kmerTest.dir/build.make CMakeFiles/kmerTest.dir/src/newickHelper.cpp.s
+.PHONY : src/newickHelper.cpp.s
+
 src/twoBitCompressor.o: src/twoBitCompressor.cpp.o
 .PHONY : src/twoBitCompressor.o
 
@@ -324,6 +348,9 @@ help:
 	@echo "... src/murmur3Hash.o"
 	@echo "... src/murmur3Hash.i"
 	@echo "... src/murmur3Hash.s"
+	@echo "... src/newickHelper.o"
+	@echo "... src/newickHelper.i"
+	@echo "... src/newickHelper.s"
 	@echo "... src/twoBitCompressor.o"
 	@echo "... src/twoBitCompressor.i"
 	@echo "... src/twoBitCompressor.s"
