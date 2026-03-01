@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "kseq.h"
 #include <string>
+#include "newickHelper.hpp"
 
 // For parsing the command line values
 namespace po = boost::program_options;
@@ -215,6 +216,24 @@ int main(int argc, char** argv) {
         fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
         fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
     }
+    
+    
+    //Newick tree creation -----------------------------------------------------------------------------------------
+    int rootNode = (2 * numSequences) - 3;
+    
+    // Build the string and append the required semicolon at the end
+    std::string newickTree = buildNewick(rootNode, numSequences, h_left_child, h_right_child, h_dist_left, h_dist_right, seqNames) + ";";
+    
+    // Save to file
+    std::ofstream nwkFile("phylogenetic_tree.nwk");
+    if (nwkFile.is_open()) {
+        nwkFile << newickTree << "\n";
+        nwkFile.close();
+        fprintf(stdout, "\nSuccessfully saved Newick tree to 'phylogenetic_tree.nwk'\n");
+    } else {
+        fprintf(stderr, "\nERROR: Could not open file to save Newick tree.\n");
+    }
+    //End of newick tree creatuion-------------------------------------------------------------------------------------
 
     Aligner.freeMashMem();
 

@@ -48,6 +48,7 @@ add_executable (kmerTest
     src/twoBitCompressor.cpp
     src/kmer.cu
 	src/mash.cu
-    src/main.cpp)
+    src/main.cpp
+	src/newickHelper.cpp)
 
 target_link_libraries(kmerTest PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} TBB::tbb)
