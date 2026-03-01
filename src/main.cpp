@@ -8,6 +8,7 @@
 #include "zlib.h"
 #include <stdio.h>
 #include "kseq.h"
+#include <string>
 
 // For parsing the command line values
 namespace po = boost::program_options;
@@ -112,25 +113,10 @@ int main(int argc, char** argv) {
 
         twoBitCompress(seq->seq.s, seq->seq.l, compressedSeq.data());
 
-        // fprintf(stdout, "Compressed sequence: ");
-        // for (uint32_t i = 0; i < compressedSeqLen; i++) {
-        //     fprintf(stdout, "%08x ", compressedSeq[i]);
-        // }
-        // fprintf(stdout, "\n");
-
         Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
         uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
-        // fprintf(stdout, "Unique numKmers = %u\n", numUniqueKmers);
-        // fprintf(stdout, "Kmers: ");
-        // for (uint32_t i = 0; i < numKmers; i++) {
-        //     fprintf(stdout, "%08lx ", kmerArr[i]);
-        // }
 
         Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
-        // fprintf(stdout, "MASH Sketch (Bottom %u hashes): \n", actualSketchSize);
-        // for (uint32_t i = 0; i < actualSketchSize; i++) {
-        //     fprintf(stdout, "%016lx ", hOut_sketch[i]);
-        // }
 
         // Store the valid sketch and sequence name for later pairwise comparison
         allSketches.push_back(hOut_sketch);
@@ -178,10 +164,16 @@ int main(int argc, char** argv) {
         }
     }
 
-    // 3. Allocate Host memory for the results
+    // 3. Allocate Host memory for the results (Mash + Tree Topology)
     std::vector<float> h_out_J(numPairs);
     std::vector<float> h_out_D(numPairs);
     std::vector<float> h_out_P(numPairs);
+
+    int totalNodes = 2 * numSequences - 1;
+    std::vector<int> h_left_child(totalNodes);
+    std::vector<int> h_right_child(totalNodes);
+    std::vector<float> h_dist_left(totalNodes);
+    std::vector<float> h_dist_right(totalNodes);
 
     fprintf(stdout, "Data preparation completed in %ld msec.\n", timer.Stop());
     fprintf(stdout, "Launching GPU kernel for %d pairs...\n", numPairs);
@@ -191,23 +183,42 @@ int main(int argc, char** argv) {
     Aligner.allocateMashMem(totalSketchElements, numPairs);
     Aligner.transferMashDataToDevice(flatSketches.data(), h_pairA_idx.data(), h_pairB_idx.data(), totalSketchElements, numPairs);
 
-    Aligner.MashDistanceCalculationCaller(numPairs, sketchSize, kmerSize);
+    // Call the updated pipeline (Mash -> NJ)
+    Aligner.MashDistanceCalculationCaller(
+        numPairs, sketchSize, kmerSize, numSequences,
+        h_left_child.data(), h_right_child.data(), h_dist_left.data(), h_dist_right.data()
+    );
 
+    // Get the Mash specific arrays back to print them
     Aligner.transferMashResultsToHost(h_out_J.data(), h_out_D.data(), h_out_P.data(), numPairs);
 
-    fprintf(stdout, "GPU Pairwise calculation completed in %ld msec.\n", timer.Stop());
+    fprintf(stdout, "GPU Pairwise & NJ calculation completed in %ld msec.\n", timer.Stop());
 
-    // 4. Print Results
+    // 4. Print Mash Pairwise Results
+    fprintf(stdout, "\n--- Pairwise Mash Distances ---\n");
     for (int p = 0; p < numPairs; ++p) {
         int idxA = h_pairA_idx[p];
         int idxB = h_pairB_idx[p];
         fprintf(stdout, "[%s] vs [%s] | Jaccard: %.4f | Distance: %.4f | P-Value: %.2e\n", 
                 seqNames[idxA].c_str(), seqNames[idxB].c_str(), h_out_J[p], h_out_D[p], h_out_P[p]);
     }
-    Aligner.freeMashMem();
+    
+    // 5. Print Neighbor-Joining Tree Results
+    fprintf(stdout, "\n--- Neighbor-Joining Tree Topology ---\n");
+    for (int i = numSequences; i < totalNodes - 1; ++i) {
+        // Resolve names: If the child index is < numSequences, it's a leaf node, so print its actual FASTA name. 
+        // Otherwise, it's an internal node, so print "Node X".
+        std::string leftName = (h_left_child[i] < numSequences) ? seqNames[h_left_child[i]] : "Node " + std::to_string(h_left_child[i]);
+        std::string rightName = (h_right_child[i] < numSequences) ? seqNames[h_right_child[i]] : "Node " + std::to_string(h_right_child[i]);
 
+        fprintf(stdout, "Internal Node %d joined:\n", i);
+        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
+        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
+    }
+
+    Aligner.freeMashMem();
 
     kseq_destroy(seq);
     gzclose(fp);
+    return 0;
 }
-

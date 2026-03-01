@@ -1,0 +1,73 @@
+Setting CPU threads to 8 and printing GPU device properties.
+Device Number: 0
+  Device name: NVIDIA A30 MIG 2g.12gb
+  Device memory: 12549357568
+  Memory Clock Rate (KHz): 1215000
+  Memory Bus Width (bits): 1536
+  Peak Memory Bandwidth (GB/s): 466.560000
+Completed in 78 msec 
+
+Reading reference sequence and compressing to two-bit encoding.
+
+--- Sequence 0: T1 (length: 9999) ---
+KmerSize = 21, numKmers = 9979
+
+
+--- Sequence 1: T600 (length: 9999) ---
+KmerSize = 21, numKmers = 9979
+
+
+--- Sequence 2: T6565 (length: 9999) ---
+KmerSize = 21, numKmers = 9979
+
+
+--- Sequence 3: T9834 (length: 9999) ---
+KmerSize = 21, numKmers = 9979
+
+
+--- Sequence 4: T5900 (length: 9996) ---
+KmerSize = 21, numKmers = 9976
+
+
+--- Sequence 5: T8157 (length: 9996) ---
+KmerSize = 21, numKmers = 9976
+
+
+Processed 6 sequences total.
+
+
+
+Data preparation completed in 192 msec.
+Launching GPU kernel for 15 pairs...
+GPU Pairwise & NJ calculation completed in 2 msec.
+
+--- Pairwise Mash Distances ---
+[T1] vs [T600] | Jaccard: 0.9249 | Distance: 0.0019 | P-Value: 0.00e+00
+[T1] vs [T6565] | Jaccard: 0.8744 | Distance: 0.0033 | P-Value: 0.00e+00
+[T1] vs [T9834] | Jaccard: 0.8674 | Distance: 0.0035 | P-Value: 0.00e+00
+[T1] vs [T5900] | Jaccard: 0.9268 | Distance: 0.0018 | P-Value: 0.00e+00
+[T1] vs [T8157] | Jaccard: 0.9249 | Distance: 0.0019 | P-Value: 0.00e+00
+[T600] vs [T6565] | Jaccard: 0.9455 | Distance: 0.0014 | P-Value: 0.00e+00
+[T600] vs [T9834] | Jaccard: 0.9380 | Distance: 0.0015 | P-Value: 0.00e+00
+[T600] vs [T5900] | Jaccard: 0.9822 | Distance: 0.0004 | P-Value: 0.00e+00
+[T600] vs [T8157] | Jaccard: 0.9743 | Distance: 0.0006 | P-Value: 0.00e+00
+[T6565] vs [T9834] | Jaccard: 0.9920 | Distance: 0.0002 | P-Value: 0.00e+00
+[T6565] vs [T5900] | Jaccard: 0.9286 | Distance: 0.0018 | P-Value: 0.00e+00
+[T6565] vs [T8157] | Jaccard: 0.9212 | Distance: 0.0020 | P-Value: 0.00e+00
+[T9834] vs [T5900] | Jaccard: 0.9212 | Distance: 0.0020 | P-Value: 0.00e+00
+[T9834] vs [T8157] | Jaccard: 0.9139 | Distance: 0.0022 | P-Value: 0.00e+00
+[T5900] vs [T8157] | Jaccard: 0.9920 | Distance: 0.0002 | P-Value: 0.00e+00
+
+--- Neighbor-Joining Tree Topology ---
+Internal Node 6 joined:
+  -> T6565 (Branch Length: -0.0000)
+  -> T9834 (Branch Length: 0.0002)
+Internal Node 7 joined:
+  -> T600 (Branch Length: -0.0000)
+  -> Node 6 (Branch Length: 0.0014)
+Internal Node 8 joined:
+  -> T5900 (Branch Length: 0.0000)
+  -> T8157 (Branch Length: 0.0002)
+Internal Node 9 joined:
+  -> T1 (Branch Length: 0.0016)
+  -> Node 7 (Branch Length: 0.0003)
