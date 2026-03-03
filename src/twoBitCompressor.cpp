@@ -1,4 +1,5 @@
 #include "twoBitCompressor.hpp"
+#include <tbb/parallel_pipeline.h>
 
 /**
  * Compresses a DNA sequence (consisting of As, Cs, Gs and Ts) to a 2-bit
@@ -11,14 +12,14 @@
  * lowest to highest bits
  * For e.g., string GACT would be encoded as 0x11010010 (=210 as decimal number)
  *
- * TODO: parallelize this function
+ * TODO Complete: parallelize this function
  *
  * HINT: use tbb::parallel_for using a new lambda function
  */
 void twoBitCompress(char* seq, size_t seqLen, uint32_t* compressedSeq) {
     size_t compressedSeqLen = (seqLen+15)/16;
 
-    for (size_t i=0; i < compressedSeqLen; i++) {
+    tbb::parallel_for(size_t(0), compressedSeqLen, [seq, seqLen, &compressedSeq](size_t i) {
         compressedSeq[i] = 0;
 
         size_t start = 16*i;
@@ -48,5 +49,6 @@ void twoBitCompress(char* seq, size_t seqLen, uint32_t* compressedSeq) {
             compressedSeq[i] |= (twoBitVal << shift);
             shift += 2;
         }
-    }
+    });
+
 }
