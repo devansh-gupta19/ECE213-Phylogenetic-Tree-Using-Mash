@@ -20,4 +20,4 @@ make -j4
 ## Basic run to map the first 40 reads in the reads.fa in batches of 10 reads
 ## HINT: may need to change values for the assignment tasks. You can create a sequence of commands
 #nsys profile --stats=true ./kmerTest --reference ../data/reference.fa --reads ../data/reads.fa  --maxReads 150000 --batchSize 10000 --numThreads 1 --kmerSize 12
-./kmerTest --maxReads 6 --batchSize 10000 --numThreads 8 --kmerSize 21 --bottomK 1000
+./kmerTest --maxReads 500 --batchSize 10000 --numThreads 8 --kmerSize 30 --bottomK 2500 > my.txt
