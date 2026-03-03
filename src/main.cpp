@@ -62,19 +62,18 @@ int main(int argc, char** argv) {
         std::cerr << "ERROR! kmerSize should be between 2 and 32." << std::endl;
         exit(1);
     }
-    // if ((bottomK < 1) || (bottomK > 32)) {
-    //     std::cerr << "ERROR! bottomK should be between 1 and 64." << std::endl;
-    //     exit(1);
-    // }
     if ((numThreads < 1) || (numThreads > 8)) {
         std::cerr << "ERROR! numThreads should be between 1 and 8." << std::endl;
+        exit(1);
+    }
+    if (batchSize == 0) {
+        std::cerr << "ERROR! batchSize must be greater than 0." << std::endl;
         exit(1);
     }
 
     // Print GPU information
     timer.Start();
     fprintf(stdout, "Setting CPU threads to %u and printing GPU device properties.\n", numThreads);
-    // tbb::global_control init(tbb::global_control::max_allowed_parallelism, numThreads);
     printGpuProperties();
     fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
 
@@ -96,46 +95,85 @@ int main(int argc, char** argv) {
     int l;
     uint32_t seqCount = 0;
     uint32_t totReads = 0;
+    uint32_t batchCount = 0;
 
-    while ((l = kseq_read(seq)) >= 0 && (totReads < maxReads)) {
-        totReads++;
-        fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, seq->name.s, seq->seq.l);
+    bool endOfFile = false;
 
-        uint32_t compressedSeqLen = (seq->seq.l + 15) / 16;
-        uint32_t numKmers = (seq->seq.l >= kmerSize) ? (seq->seq.l - kmerSize + 1) : 0;
+    // ========================================================================
+    // BATCH PROCESSING LOOP
+    // ========================================================================
+    while (!endOfFile && totReads < maxReads) {
+        std::vector<std::string> batchSeqs;
+        std::vector<std::string> batchNames;
+        
+        // 1. Read up to 'batchSize' sequences into CPU memory
+        for (uint32_t b = 0; b < batchSize && totReads < maxReads; ++b) {
+            l = kseq_read(seq);
+            if (l >= 0) {
+                batchSeqs.push_back(std::string(seq->seq.s, seq->seq.l));
+                batchNames.push_back(std::string(seq->name.s));
+                totReads++;
+            } else {
+                endOfFile = true;
+                break;
+            }
+        }
 
-        fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
+        // If the batch is empty, we are done
+        if (batchSeqs.empty()) {
+            break;
+        }
 
-        std::vector<uint32_t> compressedSeq(compressedSeqLen);
-        std::vector<size_t> kmerArr(numKmers);
-    
-        uint32_t actualSketchSize = (numKmers < bottomK) ? numKmers : bottomK;
-        std::vector<uint64_t> hOut_sketch(actualSketchSize);
+        batchCount++;
+        fprintf(stdout, "\n=======================================================\n");
+        fprintf(stdout, "Processing Batch %u: %zu sequences (Total read so far: %u)\n", batchCount, batchSeqs.size(), totReads);
+        fprintf(stdout, "=======================================================\n");
 
-        twoBitCompress(seq->seq.s, seq->seq.l, compressedSeq.data());
+        // 2. Process the loaded batch sequentially on the GPU
+        for (size_t i = 0; i < batchSeqs.size(); ++i) {
+            size_t currentSeqLen = batchSeqs[i].length();
+            
+            fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, batchNames[i].c_str(), currentSeqLen);
 
-        Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
-        uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+            uint32_t compressedSeqLen = (currentSeqLen + 15) / 16;
+            uint32_t numKmers = (currentSeqLen >= kmerSize) ? (currentSeqLen - kmerSize + 1) : 0;
 
-        Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
+            fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
 
-        // Store the valid sketch and sequence name for later pairwise comparison
-        allSketches.push_back(hOut_sketch);
-        seqNames.push_back(std::string(seq->name.s));
+            std::vector<uint32_t> compressedSeq(compressedSeqLen);
+            std::vector<size_t> kmerArr(numKmers);
+        
+            uint32_t actualSketchSize = (numKmers < bottomK) ? numKmers : bottomK;
+            std::vector<uint64_t> hOut_sketch(actualSketchSize);
 
-        fprintf(stdout, "\n");
-        Aligner.clearAndReset();
-        seqCount++;
-    } // End of while loop to calculate MASH sketches for all sequences
+            // Compress the specific sequence from our batch array
+            twoBitCompress(batchSeqs[i].c_str(), currentSeqLen, compressedSeq.data());
+
+            Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
+            uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
+
+            Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
+
+            // Store the valid sketch and sequence name for later pairwise comparison
+            allSketches.push_back(hOut_sketch);
+            seqNames.push_back(batchNames[i]);
+
+            Aligner.clearAndReset();
+            seqCount++;
+        }
+    } // End of batch loop
 
     if (seqCount == 0) {
         fprintf(stderr, "ERROR: No sequences found in file.\n");
         exit(1);
     }
-    fprintf(stdout, "\nProcessed %u sequences total.\n", seqCount);
+    fprintf(stdout, "\nProcessed %u sequences total across %u batches.\n", seqCount, batchCount);
 
     fprintf(stdout, "\n\n\n");
+    
+    // ========================================================================
     // Pairwise MASH Distance Computation
+    // ========================================================================
     int numSequences = allSketches.size();
     if (numSequences < 2) {
         fprintf(stderr, "Need at least 2 sequences to compare.\n");
