@@ -97,207 +97,19 @@ __global__ void ComputeMashDistancesKernel(
     }
 }
 
-// ============================================================================
-// 2. NEIGHBOR JOINING SETUP KERNEL (NEW)
-// ============================================================================
-__global__ void InitNJMatrixKernel(
-    int numSeqs,
-    int numPairs,
-    const int* d_pairA_idx,
-    const int* d_pairB_idx,
-    const float* d_out_D,
-    float* d_distMatrix,
-    bool* d_active) 
-{
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    int totalNodes = 2 * numSeqs - 1;
 
-    // Populate the 2D symmetric distance matrix from the 1D arrays
-    if (tid < numPairs) {
-        int r = d_pairA_idx[tid];
-        int c = d_pairB_idx[tid];
-        float dist = d_out_D[tid];
-        
-        d_distMatrix[r * totalNodes + c] = dist;
-        d_distMatrix[c * totalNodes + r] = dist; // Symmetric
-    }
-
-    // Initialize the active mask
-    if (tid < totalNodes) {
-        d_active[tid] = (tid < numSeqs);
-    }
-}
-
-// ============================================================================
-// 3. SEQUENTIAL NEIGHBOR JOINING KERNEL (NEW)
-// ============================================================================
-__global__ void SequentialNeighborJoiningKernel(
-    float* d_distMatrix,  
-    bool* d_active,       
-    float* d_r,           
-    int* d_left_child,    
-    int* d_right_child,   
-    float* d_dist_left,   
-    float* d_dist_right,  
-    int numSeqs)
-{
-    // Restrict execution to a single thread
-    if (threadIdx.x != 0 || blockIdx.x != 0) return;
-
-    int totalNodes = 2 * numSeqs - 1;
-    int currentNodesCount = numSeqs;
-    int nextNodeId = numSeqs;
-
-    while (currentNodesCount > 2) {
-        // Calculate Net Divergence r[i]
-        for (int i = 0; i < nextNodeId; ++i) {
-            d_r[i] = 0.0f;
-            if (!d_active[i]) continue;
-            
-            for (int j = 0; j < nextNodeId; ++j) {
-                if (d_active[j] && i != j) {
-                    d_r[i] += d_distMatrix[i * totalNodes + j];
-                }
-            }
-        }
-
-        // Calculate Q-matrix and find the minimum pair
-        float minQ = FLT_MAX;
-        int min_i = -1, min_j = -1;
-
-        for (int i = 0; i < nextNodeId; ++i) {
-            if (!d_active[i]) continue;
-            for (int j = i + 1; j < nextNodeId; ++j) {
-                if (!d_active[j]) continue;
-
-                float dist_ij = d_distMatrix[i * totalNodes + j];
-                float q = (currentNodesCount - 2) * dist_ij - d_r[i] - d_r[j];
-
-                if (q < minQ) {
-                    minQ = q;
-                    min_i = i;
-                    min_j = j;
-                }
-            }
-        }
-
-        // Compute Branch Lengths and Update Tree Topology
-        float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
-        float dist_i_u = 0.5f * dist_ij + (d_r[min_i] - d_r[min_j]) / (2.0f * (currentNodesCount - 2));
-        float dist_j_u = dist_ij - dist_i_u;
-
-        d_left_child[nextNodeId] = min_i;
-        d_right_child[nextNodeId] = min_j;
-        d_dist_left[nextNodeId] = dist_i_u;
-        d_dist_right[nextNodeId] = dist_j_u;
-
-        // Update the Distance Matrix for the new node
-        for (int k = 0; k < nextNodeId; ++k) {
-            if (d_active[k] && k != min_i && k != min_j) {
-                float dist_ik = d_distMatrix[min_i * totalNodes + k];
-                float dist_jk = d_distMatrix[min_j * totalNodes + k];
-                float dist_uk = 0.5f * (dist_ik + dist_jk - dist_ij);
-
-                d_distMatrix[nextNodeId * totalNodes + k] = dist_uk;
-                d_distMatrix[k * totalNodes + nextNodeId] = dist_uk;
-            }
-        }
-
-        // Update Active Masks
-        d_active[min_i] = false;
-        d_active[min_j] = false;
-        d_active[nextNodeId] = true;
-
-        currentNodesCount--;
-        nextNodeId++;
-    }
-}
-
-// ============================================================================
-// 4. NEIGHBOR JOINING CALLER (NEW)
-// ============================================================================
-void GpuAligner::NeighborJoiningCaller(
-    int numSeqs, 
-    int numPairs, 
-    const int* d_pairA_idx,  
-    const int* d_pairB_idx,  
-    const float* d_out_D,    
-    int* h_left_child,       
-    int* h_right_child,      
-    float* h_dist_left,      
-    float* h_dist_right)     
-{
-    int totalNodes = 2 * numSeqs - 1;
-    
-    size_t matrixSize = totalNodes * totalNodes * sizeof(float);
-    size_t floatArraySize = totalNodes * sizeof(float);
-    size_t intArraySize = totalNodes * sizeof(int);
-    size_t boolArraySize = totalNodes * sizeof(bool);
-
-    float *d_distMatrix, *d_r, *d_dist_left, *d_dist_right;
-    int *d_left_child, *d_right_child;
-    bool *d_active;
-
-    cudaMalloc(&d_distMatrix, matrixSize);
-    cudaMalloc(&d_active, boolArraySize);
-    cudaMalloc(&d_r, floatArraySize);
-    cudaMalloc(&d_left_child, intArraySize);
-    cudaMalloc(&d_right_child, intArraySize);
-    cudaMalloc(&d_dist_left, floatArraySize);
-    cudaMalloc(&d_dist_right, floatArraySize);
-
-    cudaMemset(d_distMatrix, 0, matrixSize);
-    cudaMemset(d_left_child, -1, intArraySize);
-    cudaMemset(d_right_child, -1, intArraySize);
-    cudaMemset(d_dist_left, 0, floatArraySize);
-    cudaMemset(d_dist_right, 0, floatArraySize);
-
-    int maxThreadsNeeded = (numPairs > totalNodes) ? numPairs : totalNodes;
-    int blockSize = 256;
-    int numBlocks = (maxThreadsNeeded + blockSize - 1) / blockSize;
-
-    InitNJMatrixKernel<<<numBlocks, blockSize>>>(
-        numSeqs, numPairs, d_pairA_idx, d_pairB_idx, d_out_D, d_distMatrix, d_active
-    );
-    cudaDeviceSynchronize(); 
-
-    SequentialNeighborJoiningKernel<<<1, 1>>>(
-        d_distMatrix, d_active, d_r, 
-        d_left_child, d_right_child, 
-        d_dist_left, d_dist_right, 
-        numSeqs
-    );
-    cudaDeviceSynchronize(); 
-
-    cudaMemcpy(h_left_child, d_left_child, intArraySize, cudaMemcpyDeviceToHost);
-    cudaMemcpy(h_right_child, d_right_child, intArraySize, cudaMemcpyDeviceToHost);
-    cudaMemcpy(h_dist_left, d_dist_left, floatArraySize, cudaMemcpyDeviceToHost);
-    cudaMemcpy(h_dist_right, d_dist_right, floatArraySize, cudaMemcpyDeviceToHost);
-
-    cudaFree(d_distMatrix);
-    cudaFree(d_active);
-    cudaFree(d_r);
-    cudaFree(d_left_child);
-    cudaFree(d_right_child);
-    cudaFree(d_dist_left);
-    cudaFree(d_dist_right);
-}
-
-// ============================================================================
-// 5. MASH DISTANCE CALLER
-// ============================================================================
 void GpuAligner::MashDistanceCalculationCaller(
-    int numPairs, 
-    int sketchSize, 
-    int kmerSize, 
+    int numPairs,
+    int sketchSize,
+    int kmerSize,
     int numSeqs,
-    int* h_left_child,   
-    int* h_right_child,  
-    float* h_dist_left,  
-    float* h_dist_right) 
+    int* h_left_child,
+    int* h_right_child,
+    float* h_dist_left,
+    float* h_dist_right)
 {
     // Launch exactly 1 block for every pair you need to process
-    int numBlocks = 1;  //numPairs; 
+    int numBlocks = 1;  //numPairs;
     int blockSize = 1;
 
     ComputeMashDistancesKernel<<<numBlocks, blockSize>>>(
@@ -308,11 +120,11 @@ void GpuAligner::MashDistanceCalculationCaller(
         printf("ERROR: Mash kernel launch failed: %s\n", cudaGetErrorString(err));
     }
     cudaDeviceSynchronize();
-    
+
     // Pass the host pointers into the NJ caller so the data reaches the CPU
     NeighborJoiningCaller(
-        numSeqs, numPairs, 
-        d_pairA_idx, d_pairB_idx, d_out_D, 
+        numSeqs, numPairs,
+        d_pairA_idx, d_pairB_idx, d_out_D,
         h_left_child, h_right_child, h_dist_left, h_dist_right
     );
 }

@@ -147,7 +147,10 @@ int main(int argc, char** argv) {
             std::vector<uint64_t> hOut_sketch(actualSketchSize);
 
             // Compress the specific sequence from our batch array
-            twoBitCompress(batchSeqs[i].c_str(), currentSeqLen, compressedSeq.data());
+            //twoBitCompress(batchSeqs[i].c_str(), currentSeqLen, compressedSeq.data());
+            twoBitCompress(batchSeqs[i].data(), currentSeqLen, compressedSeq.data());
+
+
 
             Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
             uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());

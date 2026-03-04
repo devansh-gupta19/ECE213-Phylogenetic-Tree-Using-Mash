@@ -1,9 +1,9 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
 #include <float.h>
-#include "masterHeader.h"
+#include "masterHeader.cuh"
 
-__global__ void SequentialInitNJMatrixKernel(
+__global__ void InitNJMatrixKernel(
     int numSeqs,
     int numPairs,
     const int* d_pairA_idx,
@@ -32,6 +32,92 @@ __global__ void SequentialInitNJMatrixKernel(
         d_active[i] = (i < numSeqs);
     }
 }
+
+// ============================================================================
+// 3. SEQUENTIAL NEIGHBOR JOINING KERNEL (NEW)
+// ============================================================================
+__global__ void SequentialNeighborJoiningKernel(
+    float* d_distMatrix,  
+    bool* d_active,       
+    float* d_r,           
+    int* d_left_child,    
+    int* d_right_child,   
+    float* d_dist_left,   
+    float* d_dist_right,  
+    int numSeqs)
+{
+    // Restrict execution to a single thread
+    if (threadIdx.x != 0 || blockIdx.x != 0) return;
+
+    int totalNodes = 2 * numSeqs - 1;
+    int currentNodesCount = numSeqs;
+    int nextNodeId = numSeqs;
+
+    while (currentNodesCount > 2) {
+        // Calculate Net Divergence r[i]
+        for (int i = 0; i < nextNodeId; ++i) {
+            d_r[i] = 0.0f;
+            if (!d_active[i]) continue;
+            
+            for (int j = 0; j < nextNodeId; ++j) {
+                if (d_active[j] && i != j) {
+                    d_r[i] += d_distMatrix[i * totalNodes + j];
+                }
+            }
+        }
+
+        // Calculate Q-matrix and find the minimum pair
+        float minQ = FLT_MAX;
+        int min_i = -1, min_j = -1;
+
+        for (int i = 0; i < nextNodeId; ++i) {
+            if (!d_active[i]) continue;
+            for (int j = i + 1; j < nextNodeId; ++j) {
+                if (!d_active[j]) continue;
+
+                float dist_ij = d_distMatrix[i * totalNodes + j];
+                float q = (currentNodesCount - 2) * dist_ij - d_r[i] - d_r[j];
+
+                if (q < minQ) {
+                    minQ = q;
+                    min_i = i;
+                    min_j = j;
+                }
+            }
+        }
+
+        // Compute Branch Lengths and Update Tree Topology
+        float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
+        float dist_i_u = 0.5f * dist_ij + (d_r[min_i] - d_r[min_j]) / (2.0f * (currentNodesCount - 2));
+        float dist_j_u = dist_ij - dist_i_u;
+
+        d_left_child[nextNodeId] = min_i;
+        d_right_child[nextNodeId] = min_j;
+        d_dist_left[nextNodeId] = dist_i_u;
+        d_dist_right[nextNodeId] = dist_j_u;
+
+        // Update the Distance Matrix for the new node
+        for (int k = 0; k < nextNodeId; ++k) {
+            if (d_active[k] && k != min_i && k != min_j) {
+                float dist_ik = d_distMatrix[min_i * totalNodes + k];
+                float dist_jk = d_distMatrix[min_j * totalNodes + k];
+                float dist_uk = 0.5f * (dist_ik + dist_jk - dist_ij);
+
+                d_distMatrix[nextNodeId * totalNodes + k] = dist_uk;
+                d_distMatrix[k * totalNodes + nextNodeId] = dist_uk;
+            }
+        }
+
+        // Update Active Masks
+        d_active[min_i] = false;
+        d_active[min_j] = false;
+        d_active[nextNodeId] = true;
+
+        currentNodesCount--;
+        nextNodeId++;
+    }
+}
+
 
 void GpuAligner::NeighborJoiningCaller(
     int numSeqs, 
