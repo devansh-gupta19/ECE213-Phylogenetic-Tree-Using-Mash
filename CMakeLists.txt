@@ -49,6 +49,7 @@ add_executable (kmerTest
     src/kmer.cu
 	src/mash.cu
     src/main.cpp
-	src/newickHelper.cpp)
+	src/newickHelper.cpp
+	src/neighborJoining.cu)
 
 target_link_libraries(kmerTest PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} TBB::tbb)
