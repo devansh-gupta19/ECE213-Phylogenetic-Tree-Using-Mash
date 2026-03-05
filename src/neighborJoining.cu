@@ -112,6 +112,13 @@ __global__ void OptimizedNeighborJoiningKernel(
                     local_min_i = i;
                     local_min_j = j;
                 }
+
+                else if (q == local_minQ) {
+                    if (i < local_min_i || (i == local_min_i && j < local_min_j)) {
+                        local_min_i = i;
+                        local_min_j = j;
+                    }
+                }
             }
         }
 
@@ -123,13 +130,29 @@ __global__ void OptimizedNeighborJoiningKernel(
         // ---------------------------------------------------------
         // Step 3: O(log N) Parallel Tree Reduction for Global Minimum
         // ---------------------------------------------------------
+        // O(log N) Parallel Tree Reduction with Lexicographical Tie-Breaking
         #pragma unroll
         for (int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
             if (tid < stride) {
-                if (minQ_vals[tid + stride] < minQ_vals[tid]) {
-                    minQ_vals[tid] = minQ_vals[tid + stride];
+                float q_stride = minQ_vals[tid + stride];
+                float q_curr = minQ_vals[tid];
+                
+                if (q_stride < q_curr) {
+                    minQ_vals[tid] = q_stride;
                     minQ_i[tid] = minQ_i[tid + stride];
                     minQ_j[tid] = minQ_j[tid + stride];
+                } 
+                // EXPLICIT TIE-BREAKER FOR REDUCTION
+                else if (q_stride == q_curr) {
+                    int i_stride = minQ_i[tid + stride];
+                    int j_stride = minQ_j[tid + stride];
+                    int i_curr = minQ_i[tid];
+                    int j_curr = minQ_j[tid];
+                    
+                    if (i_stride < i_curr || (i_stride == i_curr && j_stride < j_curr)) {
+                        minQ_i[tid] = i_stride;
+                        minQ_j[tid] = j_stride;
+                    }
                 }
             }
             __syncthreads();
