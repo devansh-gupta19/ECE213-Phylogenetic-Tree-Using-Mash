@@ -83,19 +83,23 @@ __device__ uint64_t MurmurHash3_x64_64(const void* key, int len, uint64_t seed) 
 __global__ void HashAllKmersKernel(const uint64_t* d_kmerArr, uint64_t* d_hashArr, uint32_t numKmers, int kmerByteLen) {
     // Standard 1D grid stride
     int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    
-    if (tid < numKmers) {
-        // Read the k-mer
-        uint64_t kmer = d_kmerArr[tid]; 
-        
-        // Hash it and store in the parallel hash array
-        d_hashArr[tid] = MurmurHash3_x64_64(&kmer, kmerByteLen, HASH_SEED);
+    int stride = blockDim.x * gridDim.x;
+
+    // Grid-stride loop handles arbitrary numKmers
+    for (int i = tid; i < numKmers; i += stride) {
+        uint64_t kmer = d_kmerArr[i]; 
+        d_hashArr[i] = MurmurHash3_x64_64(&kmer, kmerByteLen, HASH_SEED);
     }
 }
 
 void GpuAligner::MurmurHashCaller(uint32_t numKmers, int kmerByteLen, uint32_t bottomK, uint64_t* hOut_sketch) {
-    int numBlocks = 1024; 
+    
     int blockSize = 512; 
+    int numBlocks = (numKmers + blockSize - 1) / blockSize;
+    if (numBlocks > 1024) {
+        numBlocks = 1024; 
+    } 
+    
 
     // Clear previous errors
     cudaGetLastError(); 

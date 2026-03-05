@@ -133,12 +133,12 @@ int main(int argc, char** argv) {
         for (size_t i = 0; i < batchSeqs.size(); ++i) {
             size_t currentSeqLen = batchSeqs[i].length();
             
-            fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, batchNames[i].c_str(), currentSeqLen);
+            //fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, batchNames[i].c_str(), currentSeqLen);
 
             uint32_t compressedSeqLen = (currentSeqLen + 15) / 16;
             uint32_t numKmers = (currentSeqLen >= kmerSize) ? (currentSeqLen - kmerSize + 1) : 0;
 
-            fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
+            //fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
 
             std::vector<uint32_t> compressedSeq(compressedSeqLen);
             std::vector<size_t> kmerArr(numKmers);
@@ -204,9 +204,9 @@ int main(int argc, char** argv) {
     }
 
     // 3. Allocate Host memory for the results (Mash + Tree Topology)
-    std::vector<float> h_out_J(numPairs);
-    std::vector<float> h_out_D(numPairs);
-    std::vector<float> h_out_P(numPairs);
+    //std::vector<float> h_out_J(numPairs);
+    //std::vector<float> h_out_D(numPairs);
+    //std::vector<float> h_out_P(numPairs);
 
     int totalNodes = 2 * numSequences - 1;
     std::vector<int> h_left_child(totalNodes);
@@ -229,7 +229,7 @@ int main(int argc, char** argv) {
     );
 
     // Get the Mash specific arrays back to print them
-    Aligner.transferMashResultsToHost(h_out_J.data(), h_out_D.data(), h_out_P.data(), numPairs);
+    //Aligner.transferMashResultsToHost(h_out_J.data(), h_out_D.data(), h_out_P.data(), numPairs);
 
     fprintf(stdout, "GPU Pairwise & NJ calculation completed in %ld msec.\n", timer.Stop());
 
@@ -238,8 +238,7 @@ int main(int argc, char** argv) {
     for (int p = 0; p < numPairs; ++p) {
         int idxA = h_pairA_idx[p];
         int idxB = h_pairB_idx[p];
-        fprintf(stdout, "[%s] vs [%s] | Jaccard: %.4f | Distance: %.4f | P-Value: %.2e\n", 
-                seqNames[idxA].c_str(), seqNames[idxB].c_str(), h_out_J[p], h_out_D[p], h_out_P[p]);
+        //fprintf(stdout, "[%s] vs [%s] | Jaccard: %.4f | Distance: %.4f | P-Value: %.2e\n", seqNames[idxA].c_str(), seqNames[idxB].c_str(), h_out_J[p], h_out_D[p], h_out_P[p]);
     }
     
     // 5. Print Neighbor-Joining Tree Results
@@ -250,12 +249,12 @@ int main(int argc, char** argv) {
         std::string leftName = (h_left_child[i] < numSequences) ? seqNames[h_left_child[i]] : "Node " + std::to_string(h_left_child[i]);
         std::string rightName = (h_right_child[i] < numSequences) ? seqNames[h_right_child[i]] : "Node " + std::to_string(h_right_child[i]);
 
-        fprintf(stdout, "Internal Node %d joined:\n", i);
-        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
-        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
+        //fprintf(stdout, "Internal Node %d joined:\n", i);
+        //fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
+        //fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
     }
     
-    
+    fprintf(stdout, "\n --- Tree creation complete-----\n");
     //Newick tree creation -----------------------------------------------------------------------------------------
     int rootNode = (2 * numSequences) - 3;
     
