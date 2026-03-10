@@ -1,213 +1,174 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
 #include <float.h>
+#include <math.h>
 #include "masterHeader.cuh"
 
-__global__ void InitNJMatrixKernel(
-    int numSeqs,
-    int numPairs,
-    const int* d_pairA_idx,
-    const int* d_pairB_idx,
-    const float* d_out_D,
-    float* d_distMatrix,
-    bool* d_active) 
-{
-    // Restrict execution to exactly one thread
-    if (threadIdx.x != 0 || blockIdx.x != 0) return;
-
+// ============================================================================
+// 1. SETUP KERNEL (Sequential - 1 Thread)
+// ============================================================================
+__global__ void InitNJMatrixKernel(int numSeqs, int numPairs, const int* d_pairA_idx, const int* d_pairB_idx, const float* d_out_D, float* d_distMatrix, bool* d_active) {
     int totalNodes = 2 * numSeqs - 1;
 
-    // 1. Populate the 2D symmetric distance matrix using a standard loop
     for (int i = 0; i < numPairs; ++i) {
         int r = d_pairA_idx[i];
         int c = d_pairB_idx[i];
         float dist = d_out_D[i];
-        
         d_distMatrix[r * totalNodes + c] = dist;
-        d_distMatrix[c * totalNodes + r] = dist; // Symmetric
+        d_distMatrix[c * totalNodes + r] = dist; 
     }
-
-    // 2. Initialize the active mask sequentially
     for (int i = 0; i < totalNodes; ++i) {
         d_active[i] = (i < numSeqs);
     }
 }
 
 // ============================================================================
-// 3. SEQUENTIAL NEIGHBOR JOINING KERNEL (NEW)
+// 2. COMPUTE R KERNEL (Sequential - 1 Thread)
 // ============================================================================
-__global__ void SequentialNeighborJoiningKernel(
-    float* d_distMatrix,  
-    bool* d_active,       
-    float* d_r,           
-    int* d_left_child,    
-    int* d_right_child,   
-    float* d_dist_left,   
-    float* d_dist_right,  
-    int numSeqs)
-{
-    // Restrict execution to a single thread
-    if (threadIdx.x != 0 || blockIdx.x != 0) return;
-
-    int totalNodes = 2 * numSeqs - 1;
-    int currentNodesCount = numSeqs;
-    int nextNodeId = numSeqs;
-
-    while (currentNodesCount > 2) {
-        // Calculate Net Divergence r[i]
-        for (int i = 0; i < nextNodeId; ++i) {
-            d_r[i] = 0.0f;
-            if (!d_active[i]) continue;
-            
+__global__ void ComputeNetDivergence_Kernel(float* d_distMatrix, bool* d_active, float* d_r, int totalNodes, int nextNodeId) {
+    for (int i = 0; i < nextNodeId; ++i) {
+        if (d_active[i]) {
+            float r_val = 0.0f;
             for (int j = 0; j < nextNodeId; ++j) {
                 if (d_active[j] && i != j) {
-                    d_r[i] += d_distMatrix[i * totalNodes + j];
+                    r_val += d_distMatrix[i * totalNodes + j];
                 }
             }
+            d_r[i] = r_val;
         }
-
-        // Calculate Q-matrix and find the minimum pair
-        float minQ = FLT_MAX;
-        int min_i = -1, min_j = -1;
-
-        for (int i = 0; i < nextNodeId; ++i) {
-            if (!d_active[i]) continue;
-            for (int j = i + 1; j < nextNodeId; ++j) {
-                if (!d_active[j]) continue;
-
-                float dist_ij = d_distMatrix[i * totalNodes + j];
-                float q = (currentNodesCount - 2) * dist_ij - d_r[i] - d_r[j];
-
-                if (q < minQ) {
-                    minQ = q;
-                    min_i = i;
-                    min_j = j;
-                }
-            }
-        }
-
-        // Compute Branch Lengths and Update Tree Topology
-        float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
-        float dist_i_u = 0.5f * dist_ij + (d_r[min_i] - d_r[min_j]) / (2.0f * (currentNodesCount - 2));
-        float dist_j_u = dist_ij - dist_i_u;
-
-        d_left_child[nextNodeId] = min_i;
-        d_right_child[nextNodeId] = min_j;
-        d_dist_left[nextNodeId] = dist_i_u;
-        d_dist_right[nextNodeId] = dist_j_u;
-
-        // Update the Distance Matrix for the new node
-        for (int k = 0; k < nextNodeId; ++k) {
-            if (d_active[k] && k != min_i && k != min_j) {
-                float dist_ik = d_distMatrix[min_i * totalNodes + k];
-                float dist_jk = d_distMatrix[min_j * totalNodes + k];
-                float dist_uk = 0.5f * (dist_ik + dist_jk - dist_ij);
-
-                d_distMatrix[nextNodeId * totalNodes + k] = dist_uk;
-                d_distMatrix[k * totalNodes + nextNodeId] = dist_uk;
-            }
-        }
-
-        // Update Active Masks
-        d_active[min_i] = false;
-        d_active[min_j] = false;
-        d_active[nextNodeId] = true;
-
-        currentNodesCount--;
-        nextNodeId++;
     }
 }
 
+// ============================================================================
+// 3. FIND MINIMUM Q & FINALIZE KERNEL (Sequential - 1 Thread)
+// Replaces both Phase 1 and Phase 2 from the parallel version
+// ============================================================================
+__global__ void FindMinQ_And_Finalize_Kernel(float* d_distMatrix, bool* d_active, float* d_r, int* d_left_child, int* d_right_child, float* d_dist_left, float* d_dist_right, int totalNodes, int nextNodeId, int currentNodesCount, int* d_globalMinI, int* d_globalMinJ) {
+    
+    float minQ = FLT_MAX;
+    int min_i = -1, min_j = -1;
 
-void GpuAligner::NeighborJoiningCaller(
-    int numSeqs, 
-    int numPairs, 
-    const int* d_pairA_idx,  // Input: DEVICE pointer
-    const int* d_pairB_idx,  // Input: DEVICE pointer
-    const float* d_out_D,    // Input: DEVICE pointer
-    int* h_left_child,       // Output: HOST pointer
-    int* h_right_child,      // Output: HOST pointer
-    float* h_dist_left,      // Output: HOST pointer
-    float* h_dist_right)     // Output: HOST pointer
-{
-    // A fully resolved tree with N leaves has 2N-1 total nodes
+    // Sequential search for minimum Q
+    for (int i = 0; i < nextNodeId; ++i) {
+        if (d_active[i]) {
+            for (int j = i + 1; j < nextNodeId; ++j) {
+                if (d_active[j]) {
+                    float dist_ij = d_distMatrix[i * totalNodes + j];
+                    float q = (currentNodesCount - 2) * dist_ij - d_r[i] - d_r[j];
+
+                    if (q < minQ - 1e-6f) {
+                        minQ = q; min_i = i; min_j = j;
+                    } else if (fabsf(q - minQ) <= 1e-6f) {
+                        if (i < min_i || (i == min_i && j < min_j)) {
+                            minQ = q; min_i = i; min_j = j;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Finalize Topology
+    d_globalMinI[0] = min_i;
+    d_globalMinJ[0] = min_j;
+
+    float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
+    float dist_i_u = 0.5f * dist_ij + (d_r[min_i] - d_r[min_j]) / (2.0f * (currentNodesCount - 2));
+    float dist_j_u = dist_ij - dist_i_u;
+
+    d_left_child[nextNodeId] = min_i; 
+    d_right_child[nextNodeId] = min_j;
+    d_dist_left[nextNodeId] = dist_i_u; 
+    d_dist_right[nextNodeId] = dist_j_u;
+
+    d_active[min_i] = false; 
+    d_active[min_j] = false; 
+    d_active[nextNodeId] = true;
+}
+
+// ============================================================================
+// 4. UPDATE DISTANCE MATRIX KERNEL (Sequential - 1 Thread)
+// ============================================================================
+__global__ void UpdateDistanceMatrix_Kernel(float* d_distMatrix, bool* d_active, int totalNodes, int nextNodeId, int* d_globalMinI, int* d_globalMinJ) {
+    int min_i = d_globalMinI[0];
+    int min_j = d_globalMinJ[0];
+
+    for (int k = 0; k < nextNodeId; ++k) {
+        if (d_active[k] && k != min_i && k != min_j && k != nextNodeId) {
+            float dist_ij = d_distMatrix[min_i * totalNodes + min_j];
+            float dist_ik = d_distMatrix[min_i * totalNodes + k];
+            float dist_jk = d_distMatrix[min_j * totalNodes + k];
+            float dist_uk = 0.5f * (dist_ik + dist_jk - dist_ij);
+
+            d_distMatrix[nextNodeId * totalNodes + k] = dist_uk;
+            d_distMatrix[k * totalNodes + nextNodeId] = dist_uk;
+        }
+    }
+}
+
+// ============================================================================
+// CALLER FUNCTION
+// ============================================================================
+void GpuAligner::NeighborJoiningCaller(int numSeqs, int numPairs, const int* d_pairA_idx, const int* d_pairB_idx, const float* d_out_D, int* h_left_child, int* h_right_child, float* h_dist_left, float* h_dist_right) {
     int totalNodes = 2 * numSeqs - 1;
     
-    // Memory sizes
     size_t matrixSize = totalNodes * totalNodes * sizeof(float);
     size_t floatArraySize = totalNodes * sizeof(float);
     size_t intArraySize = totalNodes * sizeof(int);
     size_t boolArraySize = totalNodes * sizeof(bool);
 
-    // ========================================================================
-    // 1. Allocate Device Memory for Tree Structures
-    // ========================================================================
     float *d_distMatrix, *d_r, *d_dist_left, *d_dist_right;
-    int *d_left_child, *d_right_child;
+    int *d_left_child, *d_right_child, *d_globalMinI, *d_globalMinJ;
     bool *d_active;
 
-    cudaMalloc(&d_distMatrix, matrixSize);
-    cudaMalloc(&d_active, boolArraySize);
+    cudaMalloc(&d_distMatrix, matrixSize); 
+    cudaMalloc(&d_active, boolArraySize); 
     cudaMalloc(&d_r, floatArraySize);
-    cudaMalloc(&d_left_child, intArraySize);
+    cudaMalloc(&d_left_child, intArraySize); 
     cudaMalloc(&d_right_child, intArraySize);
-    cudaMalloc(&d_dist_left, floatArraySize);
+    cudaMalloc(&d_dist_left, floatArraySize); 
     cudaMalloc(&d_dist_right, floatArraySize);
-
-    // Initialize topology arrays to default values on device
-    cudaMemset(d_distMatrix, 0, matrixSize);
-    cudaMemset(d_left_child, -1, intArraySize);
+    cudaMalloc(&d_globalMinI, sizeof(int));
+    cudaMalloc(&d_globalMinJ, sizeof(int));
+    
+    cudaMemset(d_distMatrix, 0, matrixSize); 
+    cudaMemset(d_left_child, -1, intArraySize); 
     cudaMemset(d_right_child, -1, intArraySize);
-    cudaMemset(d_dist_left, 0, floatArraySize);
+    cudaMemset(d_dist_left, 0, floatArraySize); 
     cudaMemset(d_dist_right, 0, floatArraySize);
 
-    // ========================================================================
-    // 2. Launch Setup Kernel (Parallel)
-    // ========================================================================
-    // Calculate thread count needed: max of numPairs or totalNodes
-    int maxThreadsNeeded = (numPairs > totalNodes) ? numPairs : totalNodes;
-    int blockSize = 256;
-    int numBlocks = (maxThreadsNeeded + blockSize - 1) / blockSize;
+    // 1. Initial Setup (Launched on exactly 1 block, 1 thread)
+    InitNJMatrixKernel<<<1, 1>>>(numSeqs, numPairs, d_pairA_idx, d_pairB_idx, d_out_D, d_distMatrix, d_active);
+    cudaDeviceSynchronize(); 
 
-    InitNJMatrixKernel<<<numBlocks, blockSize>>>(
-        numSeqs, numPairs, d_pairA_idx, d_pairB_idx, d_out_D, d_distMatrix, d_active
-    );
-    cudaDeviceSynchronize(); // Ensure matrix is built before NJ starts
+    int currentNodesCount = numSeqs;
+    int nextNodeId = numSeqs;
 
-    // ========================================================================
-    // 3. Launch the Sequential NJ Kernel (1 Block, 1 Thread)
-    // ========================================================================
-    SequentialNeighborJoiningKernel<<<1, 1>>>(
-        d_distMatrix, d_active, d_r, 
-        d_left_child, d_right_child, 
-        d_dist_left, d_dist_right, 
-        numSeqs
-    );
+    // 2. The CPU Orchestration Loop
+    while (currentNodesCount > 2) {
+        
+        // Launch all kernels sequentially on 1 block, 1 thread
+        ComputeNetDivergence_Kernel<<<1, 1>>>(d_distMatrix, d_active, d_r, totalNodes, nextNodeId);
+        
+        FindMinQ_And_Finalize_Kernel<<<1, 1>>>(d_distMatrix, d_active, d_r, d_left_child, d_right_child, d_dist_left, d_dist_right, totalNodes, nextNodeId, currentNodesCount, d_globalMinI, d_globalMinJ);
+        
+        UpdateDistanceMatrix_Kernel<<<1, 1>>>(d_distMatrix, d_active, totalNodes, nextNodeId, d_globalMinI, d_globalMinJ);
 
-    cudaError_t err = cudaGetLastError();
-    if (err != cudaSuccess) {
-        printf("ERROR: Sequential NJ kernel launch failed: %s\n", cudaGetErrorString(err));
+        // Synchronize to ensure the GPU finishes the iteration before the CPU loops
+        cudaDeviceSynchronize();
+
+        currentNodesCount--;
+        nextNodeId++;
     }
-    cudaDeviceSynchronize(); // Wait for the single thread to finish the tree
 
-    // ========================================================================
-    // 4. Copy Tree Topology Back to Host
-    // ========================================================================
-    // Copy the small topology arrays directly into the provided host pointers
+    // 3. Copy Topology Back to Host
     cudaMemcpy(h_left_child, d_left_child, intArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_right_child, d_right_child, intArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_dist_left, d_dist_left, floatArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_dist_right, d_dist_right, floatArraySize, cudaMemcpyDeviceToHost);
 
-    // ========================================================================
-    // 5. Cleanup
-    // ========================================================================
-    // Free device memory allocated inside this function
-    cudaFree(d_distMatrix);
-    cudaFree(d_active);
-    cudaFree(d_r);
-    cudaFree(d_left_child);
-    cudaFree(d_right_child);
-    cudaFree(d_dist_left);
-    cudaFree(d_dist_right);
+    // 4. Cleanup Memory
+    cudaFree(d_distMatrix); cudaFree(d_active); cudaFree(d_r);
+    cudaFree(d_left_child); cudaFree(d_right_child); cudaFree(d_dist_left); cudaFree(d_dist_right);
+    cudaFree(d_globalMinI); cudaFree(d_globalMinJ);
 }
