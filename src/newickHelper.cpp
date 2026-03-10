@@ -15,9 +15,14 @@ std::string buildNewick(
     const std::vector<std::string>& seqNames) 
 {
     // Base Case: If the node is a leaf (original sequence), return its name
-    if (node < numSeqs) {
+    // Base Case: Check for valid sequence bounds
+    if (node >= 0 && node < numSeqs) {
         return seqNames[node];
-    } 
+    } else if (node < 0) {
+        // Return a fallback if the GPU left a dead-end branch
+        fprintf(stdout, "\n --- In NewickHelper-----%d\n", node);
+        return "NullNode"; 
+    }
     
     // Recursive Step: It's an internal node
     int left = left_child[node];

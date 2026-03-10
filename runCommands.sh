@@ -21,4 +21,4 @@ make -j4
 ## HINT: may need to change values for the assignment tasks. You can create a sequence of commands
 #nsys profile --stats=true ./kmerTest --reference ../data/reference.fa --reads ../data/reads.fa  --maxReads 150000 --batchSize 10000 --numThreads 1 --kmerSize 12
 #nsys profile --stats=true ./kmerTest --maxReads 10 --batchSize 10 --numThreads 8 --kmerSize 30 --bottomK 2500 > my.txt
-./kmerTest --maxReads 10000 --batchSize 2000 --numThreads 8 --kmerSize 15 --bottomK 1000 > my.txt
+./kmerTest --maxReads 10000 --batchSize 2000 --numThreads 8 --kmerSize 12 --bottomK 5000 > my.txt

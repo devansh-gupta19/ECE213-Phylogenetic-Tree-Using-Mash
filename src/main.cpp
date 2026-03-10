@@ -144,6 +144,10 @@ int main(int argc, char** argv) {
             std::vector<size_t> kmerArr(numKmers);
         
             uint32_t actualSketchSize = (numKmers < bottomK) ? numKmers : bottomK;
+            if (i<10)
+            {
+                fprintf(stdout, "#########################numKmers= %d", numKmers);
+            }
             std::vector<uint64_t> hOut_sketch(actualSketchSize);
 
             // Compress the specific sequence from our batch array
@@ -249,18 +253,44 @@ int main(int argc, char** argv) {
         std::string leftName = (h_left_child[i] < numSequences) ? seqNames[h_left_child[i]] : "Node " + std::to_string(h_left_child[i]);
         std::string rightName = (h_right_child[i] < numSequences) ? seqNames[h_right_child[i]] : "Node " + std::to_string(h_right_child[i]);
 
-        //fprintf(stdout, "Internal Node %d joined:\n", i);
-        //fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
-        //fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
+        fprintf(stdout, "Internal Node %d joined:\n", i);
+        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", leftName.c_str(), h_dist_left[i]);
+        fprintf(stdout, "  -> %s (Branch Length: %.4f)\n", rightName.c_str(), h_dist_right[i]);
     }
     
     fprintf(stdout, "\n --- Tree creation complete-----\n");
     //Newick tree creation -----------------------------------------------------------------------------------------
-    int rootNode = (2 * numSequences) - 3;
     
-    // Build the string and append the required semicolon at the end
-    std::string newickTree = buildNewick(rootNode, numSequences, h_left_child, h_right_child, h_dist_left, h_dist_right, seqNames) + ";";
+    int maxPopulatedNode = (2 * numSequences) - 3;
     
+    // 1. Find the two nodes that were never assigned as children (the final two subtrees)
+    std::vector<bool> is_child(maxPopulatedNode + 1, false);
+    for (int i = numSequences; i <= maxPopulatedNode; ++i) {
+        if (h_left_child[i] >= 0) is_child[h_left_child[i]] = true;
+        if (h_right_child[i] >= 0) is_child[h_right_child[i]] = true;
+    }
+
+    std::vector<int> final_roots;
+    for (int i = 0; i <= maxPopulatedNode; ++i) {
+        if (!is_child[i]) {
+            final_roots.push_back(i);
+        }
+    }
+
+    // 2. Build the final string by joining the remaining subtrees
+    std::string newickTree;
+    if (final_roots.size() == 2) {
+        std::string tree1 = buildNewick(final_roots[0], numSequences, h_left_child, h_right_child, h_dist_left, h_dist_right, seqNames);
+        std::string tree2 = buildNewick(final_roots[1], numSequences, h_left_child, h_right_child, h_dist_left, h_dist_right, seqNames);
+        
+        // Wrap them together to form the unrooted Newick tree
+        newickTree = "(" + tree1 + "," + tree2 + ");";
+    } else {
+        // Fallback just in case the GPU logic behaved unexpectedly
+        fprintf(stderr, "\nWARNING: Expected 2 final subtrees, found %zu. Falling back to max populated node.\n", final_roots.size());
+        newickTree = buildNewick(maxPopulatedNode, numSequences, h_left_child, h_right_child, h_dist_left, h_dist_right, seqNames) + ";";
+    }
+
     // Save to file
     std::ofstream nwkFile("phylogenetic_tree.nwk");
     if (nwkFile.is_open()) {

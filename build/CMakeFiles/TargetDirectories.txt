@@ -1,3 +1,0 @@
-/home/adkamat/proj_par/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles/kmerTest.dir
-/home/adkamat/proj_par/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles/edit_cache.dir
-/home/adkamat/proj_par/ECE213-Phylogenetic-Tree-Using-Mash/build/CMakeFiles/rebuild_cache.dir

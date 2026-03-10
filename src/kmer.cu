@@ -32,7 +32,7 @@ __global__ void kmerArrCreate(
     // Safely cast to 64-bit to prevent bitwise shift overflow
     uint64_t mask = (1ULL << (2*k))-1; 
 
-    uint32_t start_idx = bx * bx + tx;
+    uint32_t start_idx = bx * bs + tx;
     // Running sequentially on a single thread
     for (uint32_t i = start_idx; i < numKmers; i += bs*gs) { 
         uint32_t bit_offset = i * 2;
