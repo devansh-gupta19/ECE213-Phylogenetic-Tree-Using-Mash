@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "newickHelper.hpp"
 
-// Recursive helper to build the Newick tree string
+
 std::string buildNewick(
     int node, 
     int numSeqs, 
