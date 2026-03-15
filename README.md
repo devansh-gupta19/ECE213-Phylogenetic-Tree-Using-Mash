@@ -13,7 +13,7 @@ This project implements a GPU-accelerated phylogenetic tree construction pipelin
 
 **Repository Branches**: This repository contains two branches:
 - **main**: Contains the final paralellelized GPU-accelerated implementation
-- **baseline_sequential**: Contains the sequential CPU implementation used as the baseline for performance comparison
+- **baseline_sequential**: Contains the sequential implementation used as the baseline for performance comparison
 
 ## Project Structure
 - **src/**: Contains CUDA kernels and C++ source code for phylogenetic tree construction
