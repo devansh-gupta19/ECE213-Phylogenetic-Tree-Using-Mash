@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-// Function declaration
 std::string buildNewick(
     int node, 
     int numSeqs, 
