@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(kmerTest-build)
+project(phyloTree-build)
 
 set(CMAKE_CUDA_COMPILER "/usr/local/cuda/bin/nvcc")
 find_package(CUDA 10.0 REQUIRED)
@@ -41,7 +41,7 @@ if(TBB_FOUND)
     message(STATUS "Found TBB: ${TBB_DIR} (found version \"${TBB_VERSION}\")")
 endif()
 
-add_executable (kmerTest
+add_executable (phyloTree
     src/murmur3Hash.cu
 	src/memTransfer.cu
     src/gpuProperty.cu
@@ -52,4 +52,4 @@ add_executable (kmerTest
 	src/newickHelper.cpp
 	src/neighborJoining.cu)
 
-target_link_libraries(kmerTest PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} TBB::tbb)
+target_link_libraries(phyloTree PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} TBB::tbb)

@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     // Arguments for readMapper
     ("reads,q", po::value<std::string>(&readsFilename), "Input read sequences in FASTA file format.")
     ("readSize,s", po::value<uint32_t>(&readSize)->default_value(256), "Size of the read in number of bases [DO NOT CHANGE THE DEFAULT OF 256!]")
-    ("bottomK,w", po::value<uint32_t>(&bottomK)->default_value(100), "Size of MASH sketch (range: 1-32)")
+    ("bottomK,w", po::value<uint32_t>(&bottomK)->default_value(100), "Number of smallest hashed Kmers retained in the sketch (range: 10-9000)")
     ("maxReads,N", po::value<uint32_t>(&maxReads)->default_value(1e6), "Maximum number of reads to read from the input read sequence file")
     ("batchSize,b", po::value<uint32_t>(&batchSize)->default_value(32), "Number of reads in a batch")
     // Other options
@@ -66,19 +66,20 @@ int main(int argc, char** argv) {
         std::cerr << "ERROR! numThreads should be between 1 and 8." << std::endl;
         exit(1);
     }
+    if ((bottomK < 10) || (bottomK > 9000)) {
+        std::cerr << "ERROR! bottomK should be between 1 and 9000." << std::endl;
+        exit(1);
+    }
     if (batchSize == 0) {
         std::cerr << "ERROR! batchSize must be greater than 0." << std::endl;
         exit(1);
     }
 
     // Print GPU information
-    timer.Start();
     fprintf(stdout, "Setting CPU threads to %u and printing GPU device properties.\n", numThreads);
     printGpuProperties();
-    fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
 
     // Read reference sequence as kseq_t object
-    timer.Start();
     fprintf(stdout, "Reading reference sequence and compressing to two-bit encoding.\n");
     gzFile fp = gzopen("../dataset_dipper/t2.unaligned.fa", "r");
     if (!fp) {
@@ -99,9 +100,7 @@ int main(int argc, char** argv) {
 
     bool endOfFile = false;
 
-    // ========================================================================
-    // BATCH PROCESSING LOOP
-    // ========================================================================
+    // Batch processing loop
     while (!endOfFile && totReads < maxReads) {
         std::vector<std::string> batchSeqs;
         std::vector<std::string> batchNames;
@@ -133,29 +132,25 @@ int main(int argc, char** argv) {
         for (size_t i = 0; i < batchSeqs.size(); ++i) {
             size_t currentSeqLen = batchSeqs[i].length();
             
-            //fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, batchNames[i].c_str(), currentSeqLen);
+            fprintf(stdout, "\n--- Sequence %u: %s (length: %zu) ---\n", seqCount, batchNames[i].c_str(), currentSeqLen);
 
             uint32_t compressedSeqLen = (currentSeqLen + 15) / 16;
             uint32_t numKmers = (currentSeqLen >= kmerSize) ? (currentSeqLen - kmerSize + 1) : 0;
 
-            //fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
+            fprintf(stdout, "KmerSize = %u, numKmers = %u\n", kmerSize, numKmers);
 
             std::vector<uint32_t> compressedSeq(compressedSeqLen);
             std::vector<size_t> kmerArr(numKmers);
         
             uint32_t actualSketchSize = (numKmers < bottomK) ? numKmers : bottomK;
-            if (i<10)
-            {
-                fprintf(stdout, "#########################numKmers= %d", numKmers);
-            }
             std::vector<uint64_t> hOut_sketch(actualSketchSize);
 
             // Compress the specific sequence from our batch array
-            //twoBitCompress(batchSeqs[i].c_str(), currentSeqLen, compressedSeq.data());
             twoBitCompress(const_cast<char*>(batchSeqs[i].c_str()), currentSeqLen, compressedSeq.data());
             Aligner.allocateMem(compressedSeqLen, numKmers, kmerSize);
             uint32_t numUniqueKmers = Aligner.seedTableOnGpu(compressedSeq.data(), compressedSeqLen, kmerSize, numKmers, kmerArr.data());
 
+            // MinHash the Kmers and retain only bottomk
             Aligner.MurmurHashCaller(numUniqueKmers, 8, bottomK, hOut_sketch.data());
 
             // Store the valid sketch and sequence name for later pairwise comparison
@@ -173,28 +168,27 @@ int main(int argc, char** argv) {
     }
     fprintf(stdout, "\nProcessed %u sequences total across %u batches.\n", seqCount, batchCount);
 
-    fprintf(stdout, "\n\n\n");
+    fprintf(stdout, "\n\n");
     
-    // ========================================================================
     // Pairwise MASH Distance Computation
-    // ========================================================================
     int numSequences = allSketches.size();
     if (numSequences < 2) {
         fprintf(stderr, "Need at least 2 sequences to compare.\n");
         return 1;
     }
 
-    int sketchSize = bottomK; // Assuming all valid sketches are size bottomK
+    // Assuming all valid sketches are size bottomK
+    int sketchSize = bottomK;
     // Number of pairs = nC2
     int numPairs = (numSequences * (numSequences - 1)) / 2;
 
-    // 1. Flatten all sketches into a single 1D vector
+    // Flatten all sketches into a single 1D vector
     std::vector<uint64_t> flatSketches(numSequences * sketchSize);
     for (int i = 0; i < numSequences; ++i) {
         std::copy(allSketches[i].begin(), allSketches[i].end(), flatSketches.begin() + (i * sketchSize));
     }
 
-    // 2. Build the pair indexing arrays for the Upper Triangular Matrix
+    // Build the pair indexing arrays for the Upper Triangular Matrix
     std::vector<int> h_pairA_idx(numPairs);
     std::vector<int> h_pairB_idx(numPairs);
     
@@ -207,18 +201,13 @@ int main(int argc, char** argv) {
         }
     }
 
-    // 3. Allocate Host memory for the results (Mash + Tree Topology)
-    //std::vector<float> h_out_J(numPairs);
-    //std::vector<float> h_out_D(numPairs);
-    //std::vector<float> h_out_P(numPairs);
-
+    // Allocate host memory for the results of tree topology
     int totalNodes = 2 * numSequences - 1;
     std::vector<int> h_left_child(totalNodes);
     std::vector<int> h_right_child(totalNodes);
     std::vector<float> h_dist_left(totalNodes);
     std::vector<float> h_dist_right(totalNodes);
 
-    fprintf(stdout, "Data preparation completed in %ld msec.\n", timer.Stop());
     fprintf(stdout, "Launching GPU kernel for %d pairs...\n", numPairs);
     timer.Start();
 
@@ -232,20 +221,9 @@ int main(int argc, char** argv) {
         h_left_child.data(), h_right_child.data(), h_dist_left.data(), h_dist_right.data()
     );
 
-    // Get the Mash specific arrays back to print them
-    //Aligner.transferMashResultsToHost(h_out_J.data(), h_out_D.data(), h_out_P.data(), numPairs);
-
     fprintf(stdout, "GPU Pairwise & NJ calculation completed in %ld msec.\n", timer.Stop());
-
-    // 4. Print Mash Pairwise Results
-    fprintf(stdout, "\n--- Pairwise Mash Distances ---\n");
-    for (int p = 0; p < numPairs; ++p) {
-        int idxA = h_pairA_idx[p];
-        int idxB = h_pairB_idx[p];
-        //fprintf(stdout, "[%s] vs [%s] | Jaccard: %.4f | Distance: %.4f | P-Value: %.2e\n", seqNames[idxA].c_str(), seqNames[idxB].c_str(), h_out_J[p], h_out_D[p], h_out_P[p]);
-    }
     
-    // 5. Print Neighbor-Joining Tree Results
+    // Print Neighbor-Joining Tree Results
     fprintf(stdout, "\n--- Neighbor-Joining Tree Topology ---\n");
     for (int i = numSequences; i < totalNodes - 1; ++i) {
         // Resolve names: If the child index is < numSequences, it's a leaf node, so print its actual FASTA name. 
@@ -259,10 +237,10 @@ int main(int argc, char** argv) {
     }
     
     fprintf(stdout, "\n --- Tree creation complete-----\n");
-    //Newick tree creation -----------------------------------------------------------------------------------------
-    
+
+    //Newick tree creation
     int maxPopulatedNode = (2 * numSequences) - 3;
-    
+
     // 1. Find the two nodes that were never assigned as children (the final two subtrees)
     std::vector<bool> is_child(maxPopulatedNode + 1, false);
     for (int i = numSequences; i <= maxPopulatedNode; ++i) {
@@ -300,7 +278,7 @@ int main(int argc, char** argv) {
     } else {
         fprintf(stderr, "\nERROR: Could not open file to save Newick tree.\n");
     }
-    //End of newick tree creatuion-------------------------------------------------------------------------------------
+    //End of newick tree creation
 
     Aligner.freeMashMem();
 

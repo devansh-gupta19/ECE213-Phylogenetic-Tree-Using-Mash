@@ -66,12 +66,10 @@ void GpuAligner::allocateMashMem(int totalSketchElements, int numPairs) {
     // 3. Output Arrays
     CUDA_CHECK(cudaMalloc(&d_out_J, numPairs * sizeof(float)));
     CUDA_CHECK(cudaMalloc(&d_out_D, numPairs * sizeof(float)));
-    CUDA_CHECK(cudaMalloc(&d_out_P, numPairs * sizeof(float)));
     
     // Zero out output arrays just to be safe
     CUDA_CHECK(cudaMemset(d_out_J, 0, numPairs * sizeof(float)));
     CUDA_CHECK(cudaMemset(d_out_D, 0, numPairs * sizeof(float)));
-    CUDA_CHECK(cudaMemset(d_out_P, 0, numPairs * sizeof(float)));
 }
 
 /**
@@ -89,7 +87,6 @@ void GpuAligner::transferMashDataToDevice(const uint64_t* h_flatSketches, const 
 void GpuAligner::transferMashResultsToHost(float* h_out_J, float* h_out_D, float* h_out_P, int numPairs) {
     CUDA_CHECK(cudaMemcpy(h_out_J, d_out_J, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
     CUDA_CHECK(cudaMemcpy(h_out_D, d_out_D, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
-    CUDA_CHECK(cudaMemcpy(h_out_P, d_out_P, numPairs * sizeof(float), cudaMemcpyDeviceToHost));
 }
 
 /**
@@ -101,5 +98,4 @@ void GpuAligner::freeMashMem() {
     CUDA_CHECK(cudaFree(d_pairB_idx));
     CUDA_CHECK(cudaFree(d_out_J));
     CUDA_CHECK(cudaFree(d_out_D));
-    CUDA_CHECK(cudaFree(d_out_P));
 }

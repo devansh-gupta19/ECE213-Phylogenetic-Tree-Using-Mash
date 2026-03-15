@@ -124,7 +124,7 @@ void GpuAligner::MurmurHashCaller(uint32_t numKmers, int kmerByteLen, uint32_t b
     thrust::device_ptr<uint64_t> dev_hash_ptr(d_hashArr);
     thrust::sort(thrust::device, dev_hash_ptr, dev_hash_ptr + numKmers);
 
-    // 4. Extract the bottom 'K' hashes
+    // Extract the bottom 'K' hashes
     // Ensure we don't try to copy more k-mers than actually exist in small sequences
     uint32_t elementsToCopy = (numKmers < bottomK) ? numKmers : bottomK;
     

@@ -3,9 +3,7 @@
 #include <float.h>
 #include "masterHeader.cuh"
 
-// ============================================================================
-// 1. SETUP KERNEL
-// ============================================================================
+// Setup Kernel: Intialized distance matrix with MASH distances
 __global__ void InitNJMatrixKernel(int numSeqs, int numPairs, const int* d_pairA_idx, const int* d_pairB_idx, const float* d_out_D, float* d_distMatrix, bool* d_active) {
     int tid = blockIdx.x * blockDim.x + threadIdx.x;
     int totalNodes = 2 * numSeqs - 1;
@@ -22,9 +20,7 @@ __global__ void InitNJMatrixKernel(int numSeqs, int numPairs, const int* d_pairA
     }
 }
 
-// ============================================================================
-// 2. COMPUTE R KERNEL (Grid-Level Parallel)
-// ============================================================================
+// Compute R Kernnel (Grid-Level Parallel)
 __global__ void ComputeNetDivergence_Kernel(float* d_distMatrix, bool* d_active, float* d_r, int totalNodes, int nextNodeId) {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     
@@ -39,9 +35,7 @@ __global__ void ComputeNetDivergence_Kernel(float* d_distMatrix, bool* d_active,
     }
 }
 
-// ============================================================================
-// 3. FIND MINIMUM Q KERNEL - PHASE 1 (Grid-Level Reduction)
-// ============================================================================
+// Find cell with minimum Q in one block of the matrix (Grid-Level Reduction)
 __global__ void FindMinQ_Phase1_Kernel(float* d_distMatrix, bool* d_active, float* d_r, int totalNodes, int nextNodeId, int currentNodesCount, float* d_blockMinQ, int* d_blockMinI, int* d_blockMinJ) {
     int tid = threadIdx.x;
     int i = blockIdx.x * blockDim.x + threadIdx.x;
@@ -77,7 +71,7 @@ __global__ void FindMinQ_Phase1_Kernel(float* d_distMatrix, bool* d_active, floa
     minQ_j[tid] = local_min_j;
     __syncthreads();
 
-    #pragma unroll
+    // Parallel Reduction
     for (int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
         if (tid < stride) {
             float q_stride = minQ_vals[tid + stride];
@@ -103,9 +97,7 @@ __global__ void FindMinQ_Phase1_Kernel(float* d_distMatrix, bool* d_active, floa
     }
 }
 
-// ============================================================================
-// 4. FIND MINIMUM Q KERNEL - PHASE 2 (Finalize & Update Topology)
-// ============================================================================
+// Find the cell with minimum Q in the entire distance matrix (Finalize & Update Topology)
 __global__ void FinalizeTopology_Kernel(float* d_distMatrix, bool* d_active, float* d_r, int* d_left_child, int* d_right_child, float* d_dist_left, float* d_dist_right, int totalNodes, int nextNodeId, int currentNodesCount, int numBlocksLaunched, float* d_blockMinQ, int* d_blockMinI, int* d_blockMinJ, int* d_globalMinI, int* d_globalMinJ) {
     int tid = threadIdx.x;
     
@@ -122,7 +114,6 @@ __global__ void FinalizeTopology_Kernel(float* d_distMatrix, bool* d_active, flo
     __syncthreads();
 
     // Final Reduction to find the absolute minimum
-    #pragma unroll
     for (int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
         if (tid < stride) {
             float q_stride = minQ_vals[tid + stride];
@@ -157,9 +148,7 @@ __global__ void FinalizeTopology_Kernel(float* d_distMatrix, bool* d_active, flo
     }
 }
 
-// ============================================================================
-// 5. UPDATE DISTANCE MATRIX KERNEL (Grid-Level Parallel)
-// ============================================================================
+// Update distance matrix(Grid-Level Parallel)
 __global__ void UpdateDistanceMatrix_Kernel(float* d_distMatrix, bool* d_active, int totalNodes, int nextNodeId, int* d_globalMinI, int* d_globalMinJ) {
     int k = blockIdx.x * blockDim.x + threadIdx.x;
     
@@ -177,9 +166,8 @@ __global__ void UpdateDistanceMatrix_Kernel(float* d_distMatrix, bool* d_active,
     }
 }
 
-// ============================================================================
-// CALLER FUNCTION (CPU Loop Orchestrating the GPU)
-// ============================================================================
+
+// Caller Function
 void GpuAligner::NeighborJoiningCaller(int numSeqs, int numPairs, const int* d_pairA_idx, const int* d_pairB_idx, const float* d_out_D, int* h_left_child, int* h_right_child, float* h_dist_left, float* h_dist_right) {
     int totalNodes = 2 * numSeqs - 1;
     
@@ -199,7 +187,7 @@ void GpuAligner::NeighborJoiningCaller(int numSeqs, int numPairs, const int* d_p
     cudaMemset(d_distMatrix, 0, matrixSize); cudaMemset(d_left_child, -1, intArraySize); cudaMemset(d_right_child, -1, intArraySize);
     cudaMemset(d_dist_left, 0, floatArraySize); cudaMemset(d_dist_right, 0, floatArraySize);
 
-    // 1. Initial Setup
+    // Initial Setup
     int maxThreadsNeeded = (numPairs > totalNodes) ? numPairs : totalNodes;
     int setupBlockSize = 256;
     InitNJMatrixKernel<<<(maxThreadsNeeded + setupBlockSize - 1) / setupBlockSize, setupBlockSize>>>(numSeqs, numPairs, d_pairA_idx, d_pairB_idx, d_out_D, d_distMatrix, d_active);
@@ -217,19 +205,19 @@ void GpuAligner::NeighborJoiningCaller(int numSeqs, int numPairs, const int* d_p
     int currentNodesCount = numSeqs;
     int nextNodeId = numSeqs;
 
-    // 2. The CPU Orchestration Loop
+    // CPU calls the kernels until all nodes have been assigned to the tree topology
     while (currentNodesCount > 2) {
         int threadsPerBlock = 256;
-        int blocksNeeded = (nextNodeId + threadsPerBlock - 1) / threadsPerBlock;
+        int numBlocks = (nextNodeId + threadsPerBlock - 1) / threadsPerBlock;
 
         // Fire all 4 kernels asynchronously into the CUDA Stream
-        ComputeNetDivergence_Kernel<<<blocksNeeded, threadsPerBlock>>>(d_distMatrix, d_active, d_r, totalNodes, nextNodeId);
+        ComputeNetDivergence_Kernel<<<numBlocks, threadsPerBlock>>>(d_distMatrix, d_active, d_r, totalNodes, nextNodeId);
         
-        FindMinQ_Phase1_Kernel<<<blocksNeeded, threadsPerBlock>>>(d_distMatrix, d_active, d_r, totalNodes, nextNodeId, currentNodesCount, d_blockMinQ, d_blockMinI, d_blockMinJ);
+        FindMinQ_Phase1_Kernel<<<numBlocks, threadsPerBlock>>>(d_distMatrix, d_active, d_r, totalNodes, nextNodeId, currentNodesCount, d_blockMinQ, d_blockMinI, d_blockMinJ);
         
-        FinalizeTopology_Kernel<<<1, 256>>>(d_distMatrix, d_active, d_r, d_left_child, d_right_child, d_dist_left, d_dist_right, totalNodes, nextNodeId, currentNodesCount, blocksNeeded, d_blockMinQ, d_blockMinI, d_blockMinJ, d_globalMinI, d_globalMinJ);
+        FinalizeTopology_Kernel<<<1, 256>>>(d_distMatrix, d_active, d_r, d_left_child, d_right_child, d_dist_left, d_dist_right, totalNodes, nextNodeId, currentNodesCount, numBlocks, d_blockMinQ, d_blockMinI, d_blockMinJ, d_globalMinI, d_globalMinJ);
         
-        UpdateDistanceMatrix_Kernel<<<blocksNeeded, threadsPerBlock>>>(d_distMatrix, d_active, totalNodes, nextNodeId, d_globalMinI, d_globalMinJ);
+        UpdateDistanceMatrix_Kernel<<<numBlocks, threadsPerBlock>>>(d_distMatrix, d_active, totalNodes, nextNodeId, d_globalMinI, d_globalMinJ);
 
         // Synchronize to ensure the GPU finishes the iteration before the CPU loops
         cudaDeviceSynchronize();
@@ -238,13 +226,13 @@ void GpuAligner::NeighborJoiningCaller(int numSeqs, int numPairs, const int* d_p
         nextNodeId++;
     }
 
-    // 3. Copy Topology Back to Host
+    // Copy Topology Back to Host
     cudaMemcpy(h_left_child, d_left_child, intArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_right_child, d_right_child, intArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_dist_left, d_dist_left, floatArraySize, cudaMemcpyDeviceToHost);
     cudaMemcpy(h_dist_right, d_dist_right, floatArraySize, cudaMemcpyDeviceToHost);
 
-    // 4. Cleanup Memory
+    // Cleanup Memory
     cudaFree(d_distMatrix); cudaFree(d_active); cudaFree(d_r);
     cudaFree(d_left_child); cudaFree(d_right_child); cudaFree(d_dist_left); cudaFree(d_dist_right);
     cudaFree(d_blockMinQ); cudaFree(d_blockMinI); cudaFree(d_blockMinJ); cudaFree(d_globalMinI); cudaFree(d_globalMinJ);

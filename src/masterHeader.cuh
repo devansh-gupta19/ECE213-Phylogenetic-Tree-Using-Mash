@@ -29,7 +29,6 @@ struct GpuAligner {
     int* d_pairB_idx;
     float* d_out_J;
     float* d_out_D;
-    float* d_out_P;
 
 
     void allocateMem(int32_t len, int32_t numKmers, int32_t kmerSize);
@@ -56,11 +55,11 @@ struct GpuAligner {
         int numPairs, 
         int sketchSize, 
         int kmerSize, 
-        int numSeqs,           // NEW
-        int* h_left_child,     // NEW
-        int* h_right_child,    // NEW
-        float* h_dist_left,    // NEW
-        float* h_dist_right    // NEW
+        int numSeqs,       
+        int* h_left_child, 
+        int* h_right_child,
+        float* h_dist_left,
+        float* h_dist_right
     );
 
     // Neighbor Joining
@@ -70,10 +69,10 @@ struct GpuAligner {
         const int* d_pairA_idx, 
         const int* d_pairB_idx, 
         const float* d_out_D,
-        int* h_left_child,     // NEW
-        int* h_right_child,    // NEW
-        float* h_dist_left,    // NEW
-        float* h_dist_right    // NEW
+        int* h_left_child, 
+        int* h_right_child,
+        float* h_dist_left,
+        float* h_dist_right
     );
 };
 

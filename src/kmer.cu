@@ -14,7 +14,6 @@
  * stored in the arrary kmerPos, with i-th element corresponding to the i-th
  * kmer in the sequence
  *
- * TODO: parallelize this function
  */
 __global__ void kmerArrCreate(
     uint32_t* d_compressedSeq,
