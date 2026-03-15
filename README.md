@@ -52,6 +52,6 @@ cd ~
 
 3. The source code directory (in the `src/` directory) has a `run-commands.sh` script which contains commands that will be executed via the Docker container on the GPU instance. You can modify the commands of this script depending on the experiment.
 ```
-cd ECE213-Phylogenetic-Tree-Using-Mash
-ssh d6gupta@dsmlp-login.ucsd.edu /opt/launch-sh/bin/launch.sh -v a30 -c 8 -g 1 -m 8 -i yatisht/ece213-wi26:latest -f ./runCommands.sh
+cd ~
+ssh d6gupta@dsmlp-login.ucsd.edu /opt/launch-sh/bin/launch.sh -v a30 -c 8 -g 1 -m 8 -i yatisht/ece213-wi26:latest -f ./ECE213-Phylogenetic-Tree-Using-Mash/runCommands.sh
 ```
