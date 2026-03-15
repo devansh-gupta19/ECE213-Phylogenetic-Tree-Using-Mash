@@ -54,4 +54,7 @@ cd ~
 ```
 cd ~
 ssh d6gupta@dsmlp-login.ucsd.edu /opt/launch-sh/bin/launch.sh -v a30 -c 8 -g 1 -m 8 -i yatisht/ece213-wi26:latest -f ./ECE213-Phylogenetic-Tree-Using-Mash/runCommands.sh
+# To compare the geneated tree with the ground truth and compute Robinson-Fould (RF) score
+cd ECE213-Phylogenetic-Tree-Using-Mash
+python compare_nwk.py ./build/phylogenetic_tree.nwk ./data.treefile.nwk
 ```
